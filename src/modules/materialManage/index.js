@@ -190,7 +190,15 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
         }, function (vm) {
 
             vm.sp = {};
+            vm.sp.oid = '';
+            vm.currentGroup = $rootScope.rootGroup;
+            vm.sp.oid = vm.currentGroup.id;
+            vm.$on('emitGroupLeaf', function (e, group, leaf) {
+                if (vm.sp.oid != group.id) {
+                    vm.currentGroup = group;
+                }
 
+            });
             var uploader = vm.uploader = new FileUploader();
 
             // FILTERS
