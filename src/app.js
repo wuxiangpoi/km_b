@@ -106,16 +106,16 @@ app.run(['$rootScope', '$state', 'baseService', 'ngDialog', ($rootScope, $state,
                 return true;
             }
         }
-        $rootScope.goTostate = function(state,params,perm){
-            if(perm){
-                
-                if($rootScope.perms(perm)){
-                    $state.go(state,params);
-                }else{
+        $rootScope.goTostate = function (state, params, perm) {
+            if (perm) {
+
+                if ($rootScope.perms(perm)) {
+                    $state.go(state, params);
+                } else {
                     return;
                 }
-            }else{
-                $state.go(state,params);
+            } else {
+                $state.go(state, params);
             }
         }
         $rootScope.dmbdOSSImageUrlResizeFilter = function (imgUrl, size) {
@@ -129,6 +129,13 @@ app.run(['$rootScope', '$state', 'baseService', 'ngDialog', ($rootScope, $state,
             }
         };
     }])
+    .config([  
+        '$compileProvider',  
+        function( $compileProvider )  
+        {     
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript):/);  
+        }  
+    ])
     .config(['$qProvider', function ($qProvider) {
         $qProvider.errorOnUnhandledRejections(false);
     }])
