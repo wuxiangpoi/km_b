@@ -108,13 +108,13 @@ let controller = ($rootScope, $scope, $state, baseService) => {
                 state: 'dashboard.role',
                 icon: ''
             },
-            {
-                name: '安装人员',
-                auth: $rootScope.perms(32),
-                collapseVar: 5,
-                state: 'dashboard.auser',
-                icon: ''
-            }
+            // {
+            //     name: '安装人员',
+            //     auth: $rootScope.perms(32),
+            //     collapseVar: 5,
+            //     state: 'dashboard.auser',
+            //     icon: ''
+            // }
         ]
     }, {
         name: '数据统计',

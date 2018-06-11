@@ -216,7 +216,7 @@ export default app => {
             return statusTxt;
         };
     });
-    app.filter('getCityName', function ($rootScope) {
+    app.filter('getCityName', ['$rootScope',function ($rootScope) {
         return function (cno) {
             let cName = '';
             for (var i in $rootScope.userData.root_citys) {
@@ -230,7 +230,7 @@ export default app => {
             }
             return cName;
         }
-    });
+    }]);
     app.filter('scheduleStatusTxt', function () {
         return function (status) {
             var statusTxt = '';
