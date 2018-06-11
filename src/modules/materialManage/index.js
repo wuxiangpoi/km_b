@@ -166,7 +166,7 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                 for (var i = 0; i < vm.uploader.queue.length; i++) {
                     filenameArray.push(vm.uploader.queue[i].file.desc);
                 }
-                baseService.saveForm(vm,baseService.api.material + 'addMaterial_checkUpload', {
+                baseService.saveForm(vm, baseService.api.material + 'addMaterial_checkUpload', {
                     filenameArray: JSON.stringify(filenameArray)
                 }, function (res) {
                     if (res) {
@@ -190,6 +190,15 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
         }, function (vm) {
 
             vm.sp = {};
+            vm.sp.oid = '';
+            vm.currentGroup = $rootScope.rootGroup;
+            vm.sp.oid = vm.currentGroup.id;
+            vm.$on('emitGroupLeaf', function (e, group, leaf) {
+                if (vm.sp.oid != group.id) {
+                    vm.currentGroup = group;
+                }
+
+            });
 
             var uploader = vm.uploader = new FileUploader();
 
@@ -231,7 +240,7 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                             }
                         }
                     } else {
-                        modalService.confirmAlert('提示', '上传的文件格式平台暂时不支持，目前支持的图片格式是:' + imgfile_type + '，目前支持的视频格式是:' + videofile_type+ '，目前支持的音频格式是:mp3', 'warning');
+                        modalService.confirmAlert('提示', '上传的文件格式平台暂时不支持，目前支持的图片格式是:' + imgfile_type + '，目前支持的视频格式是:' + videofile_type + '，目前支持的音频格式是:mp3', 'warning');
                         return false;
                     }
                 }
@@ -243,13 +252,13 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                 fileItem.file.desc = fileName.join(',');
             };
 
-           vm.uploader.onCompleteItem = function (fileItem, response, status, headers) {
+            vm.uploader.onCompleteItem = function (fileItem, response, status, headers) {
                 if (response) {
                     if (response.code != 1) {
                         fileItem.isSuccess = false;
                         fileItem.isError = true;
                         fileItem.errorMsg = response.message;
-                    }else{
+                    } else {
                         $scope.initPage();
                     }
 
