@@ -2,9 +2,9 @@
 
 <div class="modal-body">
 	<form name="modalForm" novalidate>
-		<div ng-if="data.id!=null" class="form-group clearfix">
-			<label class="col-sm-3 control-label" ng-if="data.id!=null">终端编号</label>
-			<div class="col-sm-9" ng-if="data.id!=null">
+		<div ng-if="data.id" class="form-group clearfix">
+			<label class="col-sm-3 control-label" ng-if="data.id">终端编号</label>
+			<div class="col-sm-9 lh34" ng-if="data.id">
 				{{data.no}}</div>
 		</div>
 		<div class="form-group clearfix">

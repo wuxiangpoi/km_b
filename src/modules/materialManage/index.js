@@ -308,8 +308,6 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                         fileItem.isSuccess = false;
                         fileItem.isError = true;
                         fileItem.errorMsg = response.message;
-                    }else{
-                        $scope.initPage();
                     }
 
                 }

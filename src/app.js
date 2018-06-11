@@ -148,5 +148,5 @@ app.run(['$rootScope', '$state', 'baseService', 'ngDialog', ($rootScope, $state,
     }])
     .run(['fileUploaderOptions', function (fileUploaderOptions) {
         fileUploaderOptions.autoUpload = false;
-        fileUploaderOptions.url = "http://dmbd4.oss-cn-hangzhou.aliyuncs.com"
+        fileUploaderOptions.url = "http://localhost:9090/client/oss/handleUpload"
     }]);

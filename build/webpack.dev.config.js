@@ -14,6 +14,10 @@ module.exports = merge(baseConf, {
             '/api': {
                 target: 'http://192.168.1.158:9090',
                 secure: false
+            },
+            '/client': {
+                target: 'http://192.168.1.158:9090',
+                secure: false
             }
         }
     },

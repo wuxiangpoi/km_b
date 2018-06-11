@@ -14,7 +14,7 @@ import scheduleCheck from './modules/scheduleCheck/route.js'
 import group from './modules/group/route.js'
 import user from './modules/user/route.js'
 import role from './modules/role/route.js'
-import auser from './modules/auser/route.js'
+// import auser from './modules/auser/route.js'
 import terminalLoginReport from './modules/terminalLoginReport/route.js'
 import terminalPlayReport from './modules/terminalPlayReport/route.js'
 import programPlayReport from './modules/programPlayReport/route.js'
@@ -46,7 +46,7 @@ const states = [
     group,
     user,
     role,
-    auser,
+    // auser,
     terminalLoginReport,
     terminalPlayReport,
     programPlayReport,
