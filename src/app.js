@@ -128,6 +128,13 @@ app.run(['$rootScope', '$state', 'baseService', 'ngDialog', ($rootScope, $state,
             }
         };
     }])
+    .config([  
+        '$compileProvider',  
+        function( $compileProvider )  
+        {     
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript):/);  
+        }  
+    ])
     .config(['$qProvider', function ($qProvider) {
         $qProvider.errorOnUnhandledRejections(false);
     }])
