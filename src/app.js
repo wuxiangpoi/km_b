@@ -1,4 +1,5 @@
 import angular from 'angular';
+import config from '../configs/config'
 
 //引入全局样式
 import './app.depend.less'
@@ -148,5 +149,5 @@ app.run(['$rootScope', '$state', 'baseService', 'ngDialog', ($rootScope, $state,
     }])
     .run(['fileUploaderOptions', function (fileUploaderOptions) {
         fileUploaderOptions.autoUpload = false;
-        fileUploaderOptions.url = "http://localhost:9090/client/oss/handleUpload"
+        fileUploaderOptions.url = config.uploadUrl + "/client/oss/handleUpload"
     }]);
