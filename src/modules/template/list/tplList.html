@@ -1,0 +1,119 @@
+<div class="page-wrap animated fadeInRight">
+    <div class="level2">
+        <div ng-if="perms(822)">
+            <button type="button" ui-sref="dashboard.templateAdd" class="btn btn-primary addRole">
+                <i class="iconfont icon-tianjia-"></i>
+                新建模板
+            </button>
+        </div>
+    </div>
+    <div class="content-wrap">
+            <div class="clearfix">
+                    <div class="selectWrap clearfix">
+                        <km-select options="tempResolution" selected="sp.resolution" val="val" name="name" change="initPage"></km-select>
+                        <km-select options="publicStatusOptions" selected="sp.status" val="val" name="name" change="initPage"></km-select>
+                    </div>
+                </div>
+        <div class="tempWrap">
+            <ul class="clearfix">
+                <li class="tempItem" ng-repeat="template in displayed">
+                    <div class="imgWrap">
+                            <editor-page-thumb
+                            pixel-horizontal="template.pixelHorizontal"
+                            pixel-vertical="template.pixelVertical"
+                            size="180"
+                            program-size="180"
+                            page="template.page">
+                    </editor-page-thumb>
+                    </div>
+                    <div class="tempItemMid">
+                        <div class="clearfix">
+                                <span ng-click="templatePreview(template)" class="fl">
+                                        <i class="icon iconfont icon-bofang"></i>
+                                    </span>
+                                    <span ng-if="perms(822)" ng-click="deleteTemplate(template)" class="fr">
+                                        <i class="icon iconfont icon-shanchu"></i>
+                                    </span>
+                                    <span ng-if="perms(823)" ui-sref="dashboard.templateEdit({id:template.id})" class="fr">
+                                        <i class="icon iconfont icon-bianji"></i>
+                                    </span>
+                        </div>
+                        <div class="clearfix">
+                                <p>{{template.name}}</p>
+                                <p class="txtGrey">{{template.pixelHorizontal + '*' + template.pixelVertical}}</p>
+                        </div>
+                    </div>
+                    <div class="tempItemFot clearfix">
+                        <span class="fl txtGrey">
+                            <i class="iconfont icon-xiazai"></i>
+                                {{template.hot}}
+                        </span>
+                        <span class="fr" ng-if="template.status == 0">
+                            <button style="margin-top: 2px;" ng-if="perms(824)" ng-click="public(template)" class="btn btn-primary tableBtn btnGreen btn-sm">发布</button>
+                        </span>
+                        <span class="fr txtGrey" ng-if="template.status == 1">
+                            已发布
+                        </span>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <table class="table" st-pipe="callServer" st-table="displayed">
+            <tbody me-include html="{{tbodyTpl}}"></tbody>
+            <tfoot ng-show="!isLoading" me-include html="{{tfooterTpl}}"></tfoot>
+        </table>
+
+    </div>
+</div>
+<!-- <div class="tbxeditWrapper">
+<div class="template_list">
+    <div class="header no_select">
+        <button class="btn_template_add" ui-sref="dashboard.templateAdd">新建模板</button>
+        <button class="btn_template_add">从公共模板库导入</button>
+    </div>
+    <div class="body scroll_y">
+
+        <ul class="template_list_ul">
+            <li ng-repeat="template in templates">
+                <div class="template-view">
+                    <editor-page-thumb
+                            pixel-horizontal="template.pixelHorizontal"
+                            pixel-vertical="template.pixelVertical"
+                            size="200"
+                            program-size="200"
+                            page="template.page">
+                    </editor-page-thumb>
+                    <section class="template_opera_panel">
+                        <div>
+                            <button ng-click="templatePreview(template)">预览</button>
+                            <button ui-sref="dashboard.templateEdit({id:template.id})">修改</button>
+                            <button ng-click="deleteTemplate(template)">删除</button>
+                        </div>
+                    </section>
+                </div>
+                <div class="template-title">
+                    <div class="left"
+                         title="模板名称：{{template.name}}
+节目时长：{{template.page.stay|dmbdVideoTimeFormatFilter}}
+推荐分辨率：{{template.pixelHorizontal}}×{{template.pixelVertical}}
+创建时间：{{template.createTime|date:'yyyy-MM-dd HH:mm:ss'}}">{{template.name}}
+                    </div>
+                    <div class="right">{{template.pixelHorizontal}}×{{template.pixelVertical}}</div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <div class="footer">
+        <div class="pager">
+            <dmbd-pager
+                    page-size="pageSize"
+                    page-index="pageIndex"
+                    record-count="recordCount"
+                    on-paging="doPaging($index)">
+            </dmbd-pager>
+        </div>
+    </div>
+</div>
+</div> -->

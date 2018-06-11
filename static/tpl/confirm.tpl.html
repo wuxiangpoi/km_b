@@ -1,0 +1,16 @@
+<div class="modal-header">{{title}}
+  <span class="tex-red" style="font-size:14px;" ng-if="data.info">{{data.info}}</span>
+</div>
+<div class="modal-body">
+  <div class="text-center txt-confirm">
+    <i class="iconfont icon-jinggao" style="vertical-align: middle;"></i>
+    {{info}}
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary btn-lg" ng-class="{'disabled':isPosting}" ng-click="confirm()">
+    确定
+    <i class="fa fa-spinner"></i>
+  </button>
+  <button type="button" class="btn btn-default btn-lg" ng-click="closeThisDialog()">取消</button>
+</div>

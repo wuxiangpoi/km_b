@@ -1,0 +1,39 @@
+<div class="page-wrap animated fadeInRight">
+	<div class="level2">
+		<button type="button" ng-click="save()" class="btn btn-primary addRole">
+			<i class="iconfont icon-tianjia-"></i>
+			添加安装人员
+		</button>
+	</div>
+	<div class="content-wrap">
+		<div class="table-wrapper">
+			<table class="table table-striped table-hover dataTable" st-pipe="callServer" st-table="displayed">
+				<thead>
+					<tr>
+						<th>手机号</th>
+						<th>姓名</th>
+						<th>所属组织机构</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+
+				<tbody ng-show="!isLoading">
+					<tr ng-repeat="row in displayed">
+						<td>{{row.phone}}</td>
+						<td>{{row.name}}</td>
+						<td class="ellipsisTd" title="{{row.oid | getOrganizations}}">{{row.oid | getOrganizations}}</td>
+						<td style="min-width:180px;">
+							<div ng-if="!row.role || row.role != '0'">
+								<button class="btn tableBtn" ng-click="save(row)">编辑</button>
+								<button class="btn tableBtn" ng-click="resetPwd(row)">重置密码</button>
+								<button class="btn tableBtn" ng-click="del(row,$index)">删除</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+				<tbody me-include="/static/tpl/table.html"></tbody>
+				<tfoot ng-show="!isLoading" me-include="/static/tpl/table_footer.html"></tfoot>
+			</table>
+		</div>
+	</div>
+</div>

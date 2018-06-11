@@ -1,0 +1,56 @@
+.groupLeafWrap {
+    .diy_select {
+        position: relative;
+        display: inline-block;
+        width: auto;
+        line-height: 24px;
+    }
+    .groupSelect {
+        display: inline-block;
+    }
+    
+    .group-select-dropdown {
+        display: none;
+        background: #fff;
+        border: medium none;
+        border-radius: 3px;
+        box-shadow: 0 0 3px rgba(86, 96, 117, 0.7);
+        float: left;
+        font-size: 12px;
+        left: 0;
+        list-style: none outside none;
+        padding: 0;
+        position: absolute;
+        text-shadow: none;
+        top: 100%;
+        z-index: 1000;
+        width: 180px;
+        height: 240px;
+        overflow: auto;
+        .nav.nav-tabs {
+            border-bottom: 0;
+            background: #f0f0f0;
+            li {
+                margin-bottom: 0;
+                &.current {
+                    background: #fff;
+                    a {
+                        color: #337ab7;
+                    }
+                    a:hover {
+                        border-color: #fff;
+                        background: #fff;
+                    }
+                }
+                a {
+                    border-bottom: 0;
+                }
+            }
+            .emitDataBtn {
+                line-height: 36px;
+                float: right;
+                margin-right: 5px;
+            }
+        }
+    }
+}

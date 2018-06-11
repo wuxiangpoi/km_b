@@ -1,0 +1,57 @@
+<div class="modal-header" me-include="/static/tpl/modal_header.html"></div>
+
+<div class="modal-body clearfix">
+	<div class="row modalDetail">
+		<div class="col-sm-8">
+			<div class="previewWrap">
+				<dmbd-program-preview2 ng-if="program" program-pixel-horizontal="program.pixelHorizontal" program-pixel-vertical="program.pixelVertical"
+				    program-pages="program.pages" size="478"></dmbd-program-preview2>
+			</div>
+		</div>
+		<div class="col-sm-4 pdr0">
+			<div style="height:40px;" ng-if="program.pages.length > 1"></div>
+			<div class="clearfix">
+				<label class="col-sm-4 control-label">节目名称</label>
+				<div class="col-sm-8 txtGrey">{{data.name || data.programName}}
+				</div>
+			</div>
+			<div class="clearfix" ng-if="data.size!=null">
+				<label class="col-sm-4 control-label">节目文件</label>
+				<div class="col-sm-8 txtGrey">{{data.size | dmbdResourceSizeFilter}}
+				</div>
+			</div>
+			<div class="clearfix">
+				<label class="col-sm-4 control-label">时长</label>
+				<div class="col-sm-8 txtGrey">{{data.duration + 's'}}
+				</div>
+			</div>
+			<div class="clearfix" ng-if="data.pixelHorizontal!=null">
+				<label class="col-sm-4 control-label">分辨率</label>
+				<div class="col-sm-8 txtGrey">{{data.pixelHorizontal + '*' + data.pixelVertical}}
+				</div>
+			</div>
+			<div class="clearfix" ng-if="data.creator!=null">
+				<label class="col-sm-4 control-label">节目创建</label>
+				<div class="col-sm-8 txtGrey">{{data.creator}}&nbsp;&nbsp;{{data.createTime|date : 'yyyy-MM-dd HH:mm:ss'}}
+				</div>
+			</div>
+			<div class="clearfix ">
+				<label class="col-sm-4 control-label">当前状态</label>
+				<div class="col-sm-8 txtGrey">{{data.status | programStatusTxt}}</div>
+			</div>
+			<div class="clearfix" ng-if="data.approveUid!=null">
+				<label class="col-sm-4 control-label">节目初审</label>
+				<div class="col-sm-8 txtGrey">{{data.approveUid}}&nbsp;&nbsp;{{data.approveTime|date:'yyyy-MM-dd HH:mm:ss'}}
+				</div>
+			</div>
+			<div class="clearfix" ng-if="data.approveUidFinal!=null">
+				<label class="col-sm-4 control-label">节目终审</label>
+				<div class="col-sm-8 txtGrey">{{data.approveUidFinal}}&nbsp;&nbsp;{{data.approveTimeFinal|date:'yyyy-MM-dd HH:mm:ss'}}
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div ng-if="data.detailType == 1" class="modal-footer" me-include="/static/tpl/modal_footerCheck.html"></div>

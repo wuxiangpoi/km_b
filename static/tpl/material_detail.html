@@ -1,0 +1,74 @@
+<div class="modal-header" me-include="/static/tpl/modal_header.html"></div>
+
+<div class="modal-body clearfix">
+    <div class="col-sm-8 marb20" style="background:#f6f7fa;height:350px;">
+        <div ng-if="data.type==0" class="polr">
+            <img src="/static/img/loading.gif" ng-if="data.width > data.height" style="width:100%;height:350px;display:block;" lazy-src="{{data.nUrl}}"
+            />
+            <img src="/static/img/loading.gif" ng-if="data.width < data.height || data.width == data.height" style="width:auto;height:350px;display:block;min-width:200px;margin:0 auto;"
+                lazy-src="{{data.nUrl}}" />
+            <button class="fullScreenBtn" ng-click=imgPreview(data)>
+                <i class="fa fa-arrows-alt"></i>
+            </button>
+        </div>
+        <video ng-if="data.type==1" width="100%" height="100%!important" controls>
+            <source ng-src="{{data.path | play_url}}">
+        </video>
+        <div km-audio ng-if="data.type==2" audiodata="{{data}}"></div>
+        <div ng-if="data.type == 3" style="width:100%;height: 100%;padding-top: 15px;">
+            <a href="{{data.path}}" style="color: #fff!important;" class="btn btn-primary">下载</a>
+            <div style="text-align: center;margin-top: 100px;">
+                <i style="font-size: 64px;" class="iconfont icon-hudongbao"></i>
+                <p style="margin: 24px 0;" class="txtGrey">互动包，下载预览</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-4 modalDetail">
+        <div class="row">
+            <label class="col-sm-4 control-label pdr0">名称</label>
+            <div class="col-sm-8 txtGrey pdr0 ellipsTXt txtGrey">{{data.name}}
+            </div>
+        </div>
+        <div class="row" ng-if="data.type!=2 && data.type!=3">
+            <label class="col-sm-4 control-label pdr0">分辨率</label>
+            <div class="col-sm-8 txtGrey pdr0">{{data.width}}*{{data.height}}
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label pdr0">文件大小</label>
+            <div class="col-sm-8 txtGrey pdr0">
+                {{data.size | dmbdResourceSizeFilter}} </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label pdr0">格式</label>
+            <div class="col-sm-8 txtGrey pdr0">{{data.mime}}</div>
+        </div>
+        <div class="row" ng-if="data.type==1">
+            <label class="col-sm-4 control-label pdr0">时长</label>
+            <div class="col-sm-8 txtGrey pdr0">{{data.duration}}</div>
+        </div>
+        <div class="row" ng-if="data.type==1">
+            <label class="col-sm-4 control-label pdr0">码率</label>
+            <div class="col-sm-8 txtGrey pdr0">{{data.bitrate}}kb/s</div>
+        </div>
+        <div class="row" ng-if="data.type==1">
+            <label class="col-sm-4 control-label pdr0">视频编码</label>
+            <div class="col-sm-8 txtGrey pdr0">{{data.vc}}</div>
+        </div>
+        <div class="row" ng-if="data.type==1">
+            <label class="col-sm-4 control-label pdr0">音频编码</label>
+            <div class="col-sm-8 txtGrey pdr0">{{data.ac}}</div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label pdr0">当前状态</label>
+            <div ng-if="data.status" class="col-sm-8 txtGrey">
+                {{data.status | materialStatusTxt}}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div ng-if="data.detailType == 1" class="modal-footer" me-include="/static/tpl/modal_footerCheck.html"></div>

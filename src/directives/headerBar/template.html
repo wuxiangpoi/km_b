@@ -1,0 +1,71 @@
+<div class="border-bottom" id="headerBar">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: -1px">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="dashboard.home">
+                <img class="logoImg" src="{{userData.root_logo}}">
+            </a>
+            
+        </div>
+        <span ng-click="toggleFullwidth()" class="navbar-minimalize minimalize-styl-2 btn">
+            <i class="fa fa-navicon"></i>
+        </span>
+       <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown userMessage">
+                <a class="dropdown-toggle" data-animation="am-fade" bs-dropdown aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-bell fa-fw"></i>
+                    <span ng-if="materialCheckCounts + programCheckCounts + programScheduleCheckCounts> 0" class="indicator">
+                        {{materialCheckCounts + programCheckCounts + programScheduleCheckCounts}}
+                    </span>
+                </a>
+                <ul class="dropdown-menu dropdown-message">
+                    <li>
+                        <h6 class="dropdown-header clearfix">
+                            <span class="fl">新通知</span>
+                            <span class="fr">{{materialCheckCounts + programCheckCounts + programScheduleCheckCounts}}</span>
+                            </span>
+                        </h6>
+                        <div class="dropdownItemWrap">
+                            <div ng-repeat="tip in userMessage" ng-click="goToDetail(tip)" class="dropdown-item clearfix">
+                                <span class="messageLeft fl" ng-style="{'background-color':'{{colorArr[$index%3]}}'}">
+                                    <i ng-if="tip.name == 'materialCheck'" class="iconfont icon-neirongguanli"></i>
+                                    <i ng-if="tip.name == 'programCheck'" class="iconfont icon-jiemuguanli"></i>
+                                    <i ng-if="tip.name == 'scheduleCheck'" class="iconfont icon-paiqiguanli"></i>
+                                </span>
+                                <span class="messageRight fl" style="line-height:48px;">
+                                    <span ng-if="tip.name == 'materialCheck'">
+                                        您有{{tip.value}}个素材待审核
+                                    </span>
+                                    <span ng-if="tip.name == 'programCheck'">
+                                        您有{{tip.value}}个节目待审核
+                                    </span>
+                                    <span ng-if="tip.name == 'scheduleCheck'">
+                                        您有{{tip.value}}个排期待审核
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle count-info user" data-animation="am-fade" bs-dropdown aria-haspopup="true" aria-expanded="false">
+                    <i class="iconfont icon-touxiang"></i>
+                    <span>{{userData.root_account}}</span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="" ng-click="updatePwd()">
+                            <i class="fa fa-user fa-fw"></i> 修改密码</a>
+                    </li>
+                    <li>
+                        <a href="" ng-click="logout()">
+                            <i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </nav>
+</div>

@@ -1,0 +1,81 @@
+@main-color: #00a0e9;
+.smenuSideBar {
+    position: fixed;
+    z-index: 10;
+    #menuSideBar {
+      width: 280px;
+      li {
+        background: #fff;
+        a {
+          padding-left: 140px;
+          background: #fff;
+          color: #000;
+          &:hover {
+            background: #fff;
+            color: @main-color;
+          }
+          &.active {
+            color: @main-color;
+            border-left: 4px solid @main-color;
+            padding-left: 136px;
+          }
+        }
+      }
+    }
+  }
+  .mainFrameTabs {
+    margin-left: 295px;
+    margin-right: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    .page-header {
+      margin: 0;
+    }
+    .ui_content_div {
+      padding: 20px 0;
+      line-height: 32px;
+      border-bottom: 1px solid #eee;
+    }
+    h3 {
+      margin: 0 0 10px 0;
+    }
+    .grid_wrapper {
+      .grid {
+        overflow: hidden;
+        padding: 0;
+        margin: 20px auto;
+        li {
+          float: left;
+          width: 130px;
+          height: 130px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          border: 1px solid #eee;
+          -moz-box-shadow: 0 0 4px #999;
+          -webkit-box-shadow: 0 0 4px #999;
+          box-shadow: 0 0 4px #999;
+        }
+      }
+    }
+  }
+  #topNav-noLogin {
+    height: 70px;
+    background: #fff;
+    box-shadow: 0 2px 2px rgba(0,0,0,.05), 0 1px 0 rgba(0,0,0,.05);
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 900;
+    .logoImg {
+      width: 220px;
+      height: auto;
+      max-height: 55px;
+  }
+  .loginBth {
+    line-height: 70px;
+    padding-right: 15px;
+    text-decoration: none;
+    color: #00a0e9;
+}
+  }

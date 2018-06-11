@@ -1,0 +1,27 @@
+<div class="groupLeafWrap">
+    <div class="selectWrap groupSelect" id="groupSelect">
+        <div class="diy_select">
+            <button type="button" title="{{currentGroup.name}}" class="btnSelect" data-animation="am-flip-x" bs-dropdown aria-haspopup="true"
+                aria-expanded="false" ng-click="showGroup($event)">
+                {{currentGroup.name}}
+                <span class="caret"></span>
+            </button>
+            <ul class="group-select-dropdown ztree" ng-class="{'show am-fade':showGroupSel}" id="{{treeId}}" z-tree ztreeSetting="{{ztreeSetting}}">
+            </ul>
+        </div>
+
+    </div>
+    <div class="diy_select selectWrap" ng-if="showLeaf">
+        <button type="button" title="{{currentLeaf.name?currentLeaf.name:'全部分组'}}" class="btnSelect" bs-dropdown
+            aria-haspopup="true" aria-expanded="false">
+            {{currentLeaf.name?currentLeaf.name:'全部分组'}}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu select" role="menu">
+            <li ng-click="leafClick($event,{id:''})"><a>全部分组</a></li>
+            <li ng-repeat="leaf in groupLeafes" ng-click="leafClick($event,leaf)">
+               <a>{{leaf.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

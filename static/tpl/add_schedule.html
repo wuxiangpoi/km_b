@@ -1,0 +1,110 @@
+<div class="modal-header" me-include="/static/tpl/modal_header.html"></div>
+
+<div class="modal-body">
+    <form name="modalForm" novalidate>
+        <div class="form-group clearfix">
+            <label class="col-sm-3 control-label">播放日期</label>
+            <div class="col-sm-9">
+                <div class="form-group col-sm-5 p0">
+                    <div class="dateTimeWrap">
+                        <input name="startDate" required id="startDate" type="text" class="form-control" data-date-type="string" data-date-format="yyyy-MM-dd"
+                            data-model-date-format="yyyy-MM-dd" ng-model="startDate" placeholder="起始日期" data-autoclose="1"
+                            bs-datepicker>
+                        <label for="startDate" class="fa fa-calendar"></label>
+                    </div>
+                    <div class="help-block" ng-messages="modalForm.startDate.$error" ng-if="isShowMessage">
+                        <p ng-message="required">请输入起始日期</p>
+                    </div>
+                </div>
+                <div class="form-group col-sm-2 lh34 text-center">
+                    至
+                </div>
+                <div class="form-group col-sm-5 pdl0">
+                    <div class="dateTimeWrap">
+                        <input name="endDate" required type="text" id="endDate" class="form-control dateSel" data-date-type="string" data-date-format="yyyy-MM-dd"
+                            data-model-date-format="yyyy-MM-dd" ng-model="endDate" placeholder="截止日期" data-autoclose="1"
+                            bs-datepicker>
+                        <label for="endDate" class="fa fa-calendar"></label>
+                    </div>
+                    <div class="help-block" ng-messages="modalForm.endDate.$error" ng-if="isShowMessage">
+                        <p ng-message="required">请输入截止日期</p>
+                    </div>
+                </div>
+                <div class="help-block" style="padding-left:15px;" ng-if="data.startDate > data.endDate && isShowMessage && data.endDate != ''">
+                    <p>开始日期不得大于结束日期</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group clearfix">
+            <label class="col-sm-3 control-label">播放方式</label>
+            <div class="col-sm-9">
+                <div class="col-sm-5 p0">
+                    <input type="radio" ng-value=0 ng-model="stype" class="form-radio" name="stype" id="byAll">
+                    <label class="control-label" for="byAll">全天轮播</label>
+                </div>
+                <div class="col-sm-5 p0">
+                    <input type="radio" ng-value=1 ng-model="stype" class="form-radio" name="stype" id="byTime">
+                    <label class="control-label" for="byTime">按次数轮播</label>
+                </div>
+                <div class="col-sm-2 lh34 txt-center">
+                    <div e-instructions instructions="{{instructions}}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group clearfix" ng-show="stype == 1">
+            <label class="col-sm-3 control-label">播放时间</label>
+            <div class="col-sm-9">
+                <div class="col-sm-5 p0">
+                    <div class="col-sm-6 p0" style="padding-right:1px;">
+                        <select class="form-control" ng-options="h.value as h.name for h in selectH" ng-init="start_h=0" ng-model="start_h" style="padding:0;height:30px;"
+                            ng-change="checkTime()">
+                        </select>
+                    </div>
+                    <div class="col-sm-6 p0" style="padding-left:1px;">
+                        <select ng-options="m.value as m.name for m in selectM" ng-init="start_m=0" class="form-control" ng-change="checkTime()"
+                            ng-model="start_m" ng-disabled="start_h == 24" id="start_m" style="padding:0;height:30px;">
+                        </select>
+                    </div>
+
+                </div>
+                <span class="col-sm-1 p0" style="line-height:30px;text-align:center;margin:0 5px;">至</span>
+                <div class="col-sm-5 p0">
+                    <div class="col-sm-6 p0" style="padding-right:1px;">
+                        <select ng-options="h.value as h.name for h in selectH" ng-init="end_h=24" ng-change="checkTime()" class="form-control" ng-model="end_h"
+                            id="end_h" style="padding:0;height:30px;">
+                        </select>
+                    </div>
+                    <div class="col-sm-6 p0" style="padding-left:1px;">
+                        <select ng-options="m.value as m.name for m in selectM" ng-init="end_m=0" ng-change="checkTime()" class="form-control" ng-disabled="end_h == 24"
+                            ng-model="end_m" id="end_m" style="padding:0;height:30px;">
+                            <option ng-selected="i == end_m" ng-repeat="i in 60 | range" value="{{i}}">{{i}}分</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="help-block col-sm-12" ng-if="showTip && isShowMessage">
+                    <p class="row">结束时间必须大于开始时间</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group clearfix" ng-if="stype == 1">
+            <label class="col-sm-3 control-label">最少播放次数</label>
+            <div class="col-sm-3">
+                <select style="padding-left:0;" class="form-control" name="plays" required ng-model="data.plays">
+                    <option value="">请选择</option>
+                    <option value="5">5次</option>
+                    <option value="10">10次</option>
+                    <option value="15">15次</option>
+                    <option value="20">20次</option>
+                </select>
+                <div class="help-block" ng-messages="modalForm.plays.$error" ng-if="isShowMessage">
+                    <p ng-message="required">请选择播放次数</p>
+                </div>
+            </div>
+            <div class="col-sm-5 p0 txt-grey" style="font-size:12px;line-height:18px;">
+                (如果选择的播放时间有空闲，将按节目播放次数比例轮播)
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer" me-include="/static/tpl/modal_footer.html"></div>

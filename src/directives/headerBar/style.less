@@ -1,0 +1,130 @@
+@main-color: #00a0e9;
+#headerBar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1040;
+    width: 100%;
+    .navbar-brand {
+        float: left;
+        height: 50px;
+        padding: 5px 10px;;
+        font-size: 18px;
+        line-height: 20px;
+        .logoImg {
+            width: 220px;
+            height: auto;
+            max-height: 55px;
+        }
+    }
+    .navInfo {
+        color: red;
+        line-height: 66px;
+        color: #fff;
+    }
+    .navbar-right {
+        float: right!important;
+        margin-right: -15px;
+        .user {
+            color: #000!important;
+            padding: 10px!important;
+            .icon-touxiang {
+                vertical-align: middle;
+                font-size: 32px!important;
+            }
+        }
+    }
+    .navbar-static-top {
+        transition: .3s;
+        background: #fff;
+        box-shadow: 0 2px 2px rgba(0,0,0,.05), 0 1px 0 rgba(0,0,0,.05);
+        padding-right: 20px;
+    }
+    span.minimalize-styl-2 {
+        font-size: 16px;
+        border: none;
+        background: #f1f2f5;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        color: #000;
+        margin: 18px 10px!important;
+    }
+    .indicator {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        font-size: 10px;
+        background: #ff3e3e;
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        line-height: 20px;
+        text-align: center;
+      }
+    .userMessage {
+        .fa-bell {
+            vertical-align: middle;
+            font-size: 32px!important;
+            color: #000;
+        }
+    }
+}
+.dropdown-menu.dropdown-message {
+    width: 220px;
+    height: 250px;
+    left: -120px!important;
+    .dropdown-item {
+      padding: 5px 0;
+      cursor: pointer;
+      &:hover {
+        background: #f1f2f5;
+        color: @main-color;
+      }
+    }
+    h6 {
+      background: #fff;
+      padding: 8px 10px;
+      border-bottom: 1px solid #e2e3e6;
+      margin: 0;
+      font-size: 14px;
+      color: #24243e;
+      span.fr {
+        background: #ff4040;
+        padding: 5px 8px;
+        color: #fff;
+        border-radius: 6px;
+        line-height: 10px;
+        font-size: 12px;
+      }
+    }
+    span.messageLeft {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: red;
+      line-height: 36px;
+      text-align: center;
+      margin: 6px 10px;
+      i {
+      font-size: 20px;
+      color: #fff;
+      display: inline-block;
+      width: 22px;
+      height: 20px;
+    }
+    }
+  }
+  .mini-navbar {
+    #headerBar {
+        .navbar-brand {
+            width: 70px;
+            margin: 0 auto;
+            padding: 26px 5px;
+            .logoImg {
+                width: 100%;
+            }
+        }
+    }
+}

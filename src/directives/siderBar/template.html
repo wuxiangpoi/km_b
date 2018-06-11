@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default navbar-fixed-top" id="siderBar">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li ng-repeat="menu in menuList" ng-if="menu.auth" ng-class="{'active':menu.collapseVar==collapseVar}">
+                    <a ng-click="toggleMenu(menu)" ng-class="{'current':menu.states.indexOf(state) != -1}">
+                        <i class="{{menu.icon}}"></i>
+                        <span>{{menu.name}}</span>
+                        <span id="mpTotal" ng-if="menu.name == '审核管理' && materialCheckCounts + programCheckCounts + programScheduleCheckCounts > 0"
+                            class="indicator firstLevel">
+                            {{materialCheckCounts + programCheckCounts + programScheduleCheckCounts}}
+                        </span>
+                        <span ng-if="menu.children" class="fa arrow"></span>
+                    </a>
+                    <ul ng-if="menu.children" class="nav nav-second-level collapse" ng-class="{'in':menu.collapseVar==collapseVar}">
+                        <li ui-sref-active="active" ng-repeat="sMenu in menu.children" ng-if="sMenu.auth">
+                            <a ui-sref="{{sMenu.state}}">
+                                {{sMenu.name}}
+                                <span ng-if="materialCheckCounts > 0 && sMenu.name == '素材审核'" class="indicator">
+                                    {{materialCheckCounts > 0?materialCheckCounts: ''}}
+                                </span>
+                                <span ng-if="programCheckCounts > 0 && sMenu.name == '节目审核'" class="indicator">
+                                    {{programCheckCounts}}
+                                </span>
+                                <span ng-if="programScheduleCheckCounts > 0 && sMenu.name == '排期审核'" class="indicator">
+                                    {{programScheduleCheckCounts}}
+                                </span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="progressWrap smallTxt">
+            <div class="progress">
+                <div ng-style="progressBar" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{root_oss_percent}}"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            {{'已使用' + userData.root_oss_percent}}%
+            <span class="pull-right text-muted">{{ userData.root_oss_title}}</span>
+        </div>
+    </nav>
+
+</nav>

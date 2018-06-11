@@ -1,0 +1,73 @@
+<div class="modal-header">{{title}}
+    <span class="txtRed" style="font-size:14px;">(请选择与节目分辨率一致的终端下发，以免节目播放变形)</span>
+</div>
+<div class="modal-body">
+    <div class="table-wrapper">
+        <div class="clearfix tableHeader">
+            <div class="col-sm-4 ellipsTXt p0">
+                节目名称：{{data.name}}
+            </div>
+            <div ng-if="data.pixelVertical" class="col-sm-4 p0">
+                节目分辨率：{{data.pixelHorizontal + '*' + data.pixelVertical}}
+            </div>
+            <div class="col-sm-4 p0">
+                <div class="input-group serchWrap fr">
+                    <input type="text" class="form-control" ng-model="sp.search" ng-keyup="myKeyup($event,initPage)" placeholder="终端编号/终端名称">
+                    <span class="input-group-btn" ng-click="initPage()">
+                        <button type="button" class="btn btn-primary">
+                            查询
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="fl lh34">选择下发终端：</div>
+            <div class="fl">
+                <div class="clearfix ">
+                    <new-group-leaf-select reqleafurl="{{'/api/terminal/getTerminalGroups'}}"></new-group-leaf-select>
+                </div>
+            </div>
+            <div class="fl">
+                <km-select options="terminalResolutionOptions" selected="sp.resolution" val="val" name="name" change="initPage"></km-select>
+                <km-select options="terminalStatusOptions" selected="sp.status" val="val" name="name" change="initPage"></km-select>
+            </div>
+        </div>
+        <table class="table" st-pipe="callServer" st-table="displayed">
+            <thead>
+                <tr>
+                    <th class="checkTd">
+                        <input ng-checked="ids.length == displayed.length && displayed.length != 0" ng-click="checkAll($event)" type="checkbox">
+                    </th>
+                    <th>终端编号</th>
+                    <th>终端名称</th>
+                    <th>终端状态</th>
+                    <th>分辨率</th>
+                </tr>
+            </thead>
+            <tbody ng-show="!isLoading">
+                <tr ng-repeat="row in displayed" class="{{$index%2 == 0?'odd':'even'}}">
+                    <td class="checkTd">
+                        <input ng-click="checkThis(row,$event)" ng-checked="ids.indexOf(row.id) != -1" type="checkbox">
+                    </td>
+                    <td>{{row.no}}</td>
+                    <td class="ellipsisTd" title="{{row.name}}">{{row.name}}</td>
+                    <td>
+                        <div class="txt-red" ng-if="row.status == 0">未激活</div>
+                        <div class="txt-green" ng-if="row.status == 1">在线</div>
+                        <div class="txt-grey" ng-if="row.status == 2">离线</div>
+                        <div class="txt-red" ng-if="row.status == 3">异常</div>
+                    </td>
+                    <td>{{row.resolution}}</td>
+                </tr>
+            </tbody>
+            <tbody me-include="/static/tpl/table.html"></tbody>
+            <tfoot ng-show="!isLoading" me-include="/static/tpl/table_footer.html"></tfoot>
+        </table>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-class="{'disabled': isPosting}" type="button" ng-click="confirm()">发布
+        <i class="fa fa-spinner"></i>
+    </button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
+</div>
