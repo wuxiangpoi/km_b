@@ -284,8 +284,6 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                     if (item.file['desc']) {
                         filename = item.file.desc;
                     }
-                    console.log(item.file.name)
-
                     var new_multipart_params = {
                         'key': (key + item.file.name.substr(item.file.name.lastIndexOf('.'))),
                         'policy': policyBase64,
