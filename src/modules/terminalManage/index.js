@@ -206,7 +206,7 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 			cityName: '',
 			addr: item?item.addr:''
 		};
-		modalService.confirmDialog(540, item?'添加终端':'编辑终端信息', modalData, '/static/tpl/terminal_save.html', (vm, ngDialog) => {
+		modalService.confirmDialog(540, item?'编辑终端信息':'添加终端', modalData, '/static/tpl/terminal_save.html', (vm, ngDialog) => {
 			if (vm.modalForm.$valid) {
 				let formData = {
 					name: vm.data.name,
