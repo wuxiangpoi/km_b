@@ -10,7 +10,9 @@
                         <input name="startDate" required id="startDate" type="text" class="form-control" data-date-type="string" data-date-format="yyyy-MM-dd"
                             data-model-date-format="yyyy-MM-dd" ng-model="startDate" placeholder="起始日期" data-autoclose="1"
                             bs-datepicker>
-                        <label for="startDate" class="fa fa-calendar"></label>
+                            <label for="startDate" class="timeLabel">{{startDate}}
+                                <i class="fa fa-calendar"></i>
+                            </label>
                     </div>
                     <div class="help-block" ng-messages="modalForm.startDate.$error" ng-if="isShowMessage">
                         <p ng-message="required">请输入起始日期</p>
@@ -19,12 +21,14 @@
                 <div class="form-group col-sm-2 lh34 text-center">
                     至
                 </div>
-                <div class="form-group col-sm-5 pdl0">
+                <div class="form-group col-sm-5 p0">
                     <div class="dateTimeWrap">
                         <input name="endDate" required type="text" id="endDate" class="form-control dateSel" data-date-type="string" data-date-format="yyyy-MM-dd"
                             data-model-date-format="yyyy-MM-dd" ng-model="endDate" placeholder="截止日期" data-autoclose="1"
                             bs-datepicker>
-                        <label for="endDate" class="fa fa-calendar"></label>
+                        <label for="endDate" class="timeLabel">{{endDate?endDate:'截止日期'}}
+                            <i class="fa fa-calendar"></i>
+                        </label>
                     </div>
                     <div class="help-block" ng-messages="modalForm.endDate.$error" ng-if="isShowMessage">
                         <p ng-message="required">请输入截止日期</p>
