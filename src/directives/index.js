@@ -9,6 +9,7 @@ import zTree from './zTree.js'
 import newGroupSelect from './newGroupSelect'
 import groupSelect from './groupSelect'
 import imageView from './imageView'
+import imageJrop from './imageJrop'
 import kmAudio from './kmAudio'
 import imageThum from './imageThum'
 
@@ -30,6 +31,7 @@ const directives = [headerBar,
     groupSelect,
     newGroupSelect,
     imageView,
+    imageJrop,
     kmAudio,
     imageThum,
     dmbdPager,

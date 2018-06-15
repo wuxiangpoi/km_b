@@ -4,12 +4,12 @@
             <a class="navbar-brand" ui-sref="dashboard.home">
                 <img class="logoImg" src="{{userData.root_logo}}">
             </a>
-            
+
         </div>
         <span ng-click="toggleFullwidth()" class="navbar-minimalize minimalize-styl-2 btn">
             <i class="fa fa-navicon"></i>
         </span>
-       <ul class="nav navbar-top-links navbar-right">
+        <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown userMessage">
                 <a class="dropdown-toggle" data-animation="am-fade" bs-dropdown aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bell fa-fw"></i>
@@ -58,6 +58,10 @@
                     <li>
                         <a href="" ng-click="updatePwd()">
                             <i class="fa fa-user fa-fw"></i> 修改密码</a>
+                    </li>
+                    <li>
+                        <a href="" ng-click="updateLogo()">
+                            <i class="fa fa-user fa-fw"></i> 修改Logo</a>
                     </li>
                     <li>
                         <a href="" ng-click="logout()">

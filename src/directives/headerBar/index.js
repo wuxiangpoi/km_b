@@ -52,6 +52,11 @@ let controller = ($scope,$rootScope, baseService, modalService) => {
             }
         })
     }
+    $scope.updateLogo = function(){
+        modalService.confirmDialog(540, '修改Logo', {}, 'static/tpl/update_logo.html', function (vm, ngDialog) {
+            
+        })
+    }
     $scope.logout = function () {
         modalService.confirm('退出', '是否退出登录？', (vm) => {
             vm.isPosting = true;
