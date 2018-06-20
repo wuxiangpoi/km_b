@@ -5,8 +5,13 @@
             <input type="file" nv-file-select="" name="file" uploader="uploader" multiple/>
         </button>
     </div>
-    <div class="jcropImgWrap">
-        <img id="jcropImg" ng-src="{{imgSrc}}" alt="">
+    <div class="clearfix">
+        <div class="jcropImgWrap fl" style="width:360px;">
+            <img id="jcropImg" ng-src="{{imgSrc}}" alt="">
+        </div>
+        <div class="imgPreviewWrap fr"  style="width: 120px;overflow: hidden;">
+            <div class="imgPreview" style="height: 30px;overflow: hidden;"></div>
+        </div>
     </div>
-    <div class="imgPreview" style="height: 40px;overflow: hidden;"></div>
+
 </div>
