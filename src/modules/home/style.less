@@ -133,15 +133,9 @@
     height: 100%;
     top: 0;
     left: 0;
-    padding: 90px 20px 198px 270px;
+    padding: 90px 20px 198px 235px;
 }
 
-@media (max-width: 992px){
-    .homePage {
-        padding: 90px 20px 198px 75px;
-    }
-    
-  }
   @media (max-width: 1200px){
     .fileReportWrap {
         min-height: 560px;
@@ -199,4 +193,13 @@
         }
     }
   }
-  
+  body.mini-navbar {
+    .homePage {
+      padding: 90px 20px 198px 85px;
+    }
+  }
+  @media (max-width: 768px) {
+    .homePage {
+      padding: 90px 20px 198px 15px;
+    }
+  }
