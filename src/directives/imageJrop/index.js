@@ -8,7 +8,7 @@ export default app => {
             $scope.uploader = new FileUploader();
             $scope.imgSrc = '';
             //图片转换base64数据
-            function base64data(file, clackFn) { //fileID:选取文件的ID,clackFn:回调函数,size：限制的大小（单位M）
+            function base64data(file, clackFn) {
                 if (file) {
                     var reader = new FileReader();
                     var params = $scope.$eval(file);
