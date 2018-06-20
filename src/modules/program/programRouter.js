@@ -31,21 +31,21 @@ module.exports = function (app) {
             url: '/list',
             template: tplList,
             controller: ctrlList
-        }).state('program.add', {
-            url: '/add',
+        }).state('dashboard.programAdd', {
+            url: '/programAdd',
             template: tplAdd,
             controller: ctrlAdd
-        }).state('program.edit', {
+        }).state('dashboard.programEdit', {
             //onExit: ['$state', '$stateParams', function ($state, $stateParams) {
             //    console.log(this);
             //    console.log($state);
             //    console.log($stateParams);
             //}],
-            url: '/edit/{id}',
+            url: '/programEdit/{id}',
             template: tplEdit,
             controller: ctrlEdit
-        }).state('program.copy', {
-            url: '/copy/{id}',
+        }).state('dashboard.programCopy', {
+            url: '/programCopy/{id}',
             template: tplCopy,
             controller: ctrlCopy
         });
