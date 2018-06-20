@@ -24,7 +24,13 @@ export default app => {
                 base64data(fileItem, function (src) {
                     $scope.imgSrc = src;
                     $scope.$apply();
-                    
+                    $('#jcropImg').cropper({  
+                        aspectRatio: 4 / 1,
+                        viewMode: 2,
+                        dragMode: 'move',
+                        preview:'.imgPreview',
+                        movable: true
+                    });     
                 })
             };
         }
