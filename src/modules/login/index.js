@@ -34,7 +34,7 @@ const loginController = ($scope, $rootScope, baseService) => {
                                 $rootScope.rootGroup = userData.root_organizations[i];
                             }
                         }
-                        baseService.goToState('dashboard.terminalManage');                        
+                        baseService.goToState('dashboard.home');                        
                     });
                 }
             })
