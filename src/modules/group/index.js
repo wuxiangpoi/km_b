@@ -60,7 +60,14 @@ const groupController = ($scope, $rootScope, baseService,modalService) => {
                 }
             })
         }else{
-            $scope.isSort = false;
+			$scope.isSort = false;
+			$scope.ztreeSetting = {
+				zNodes: getOrganizations(),
+				isSort: false,
+				isSet: true,
+				isCheck: false,
+				selectedNodes: []
+			}
         }
 	}
 	$scope.$on('addNode', function (e, zTree, treeNode) {
