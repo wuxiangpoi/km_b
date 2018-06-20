@@ -21,9 +21,10 @@ export default app => {
                 }
             }
             $scope.uploader.onAfterAddingFile = function (fileItem) {
-                base64data(fileItem,function(src){
+                base64data(fileItem, function (src) {
                     $scope.imgSrc = src;
                     $scope.$apply();
+                    
                 })
             };
         }
