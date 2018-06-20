@@ -122,6 +122,7 @@
 							<font ng-if="row.status == 2" class="txtGrey">离线</font>
 							<font ng-if="row.status == 1" class="txtGreen">在线</font>
 							<font ng-if="row.status == 3" class="txtRed">异常</font>
+							<font ng-if="row.status == 0">未激活</font>
 						</td>
 						<td>{{row.resolution}}</td>
 						<td>{{row.city_no | getCityName}}</td>

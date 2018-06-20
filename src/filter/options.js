@@ -55,6 +55,10 @@ export let terminalStatusOptions = [{
         name: '终端状态'
     },
     {
+        val: 0,
+        name: '未激活'
+    },
+    {
         val: 1,
         name: '在线'
     },

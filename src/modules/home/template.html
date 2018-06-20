@@ -1,13 +1,13 @@
 <div class="homePage">
     <div class="row">
-        <div class="col-lg-3 col-md-6 stats" ng-click="goTostate('dashboard.terminal',{status:'1'},21)">
+        <div class="col-lg-3 col-md-6 stats" ng-click="goTostate('dashboard.terminalManage',{status:'1'},21)">
             <div class="panel">
                 <div class="panel-heading">
                     <div class="clearfix" style="text-align:center;">
-                        <div class="dibik txt-left">
+                        <div class="disIbk txt-left">
                             <i class="iconfont icon-zhengchang state_ok"></i>
                         </div>
-                        <div class="dibik txt-left" style="margin-left:40px;">
+                        <div class="disIbk txt-left" style="margin-left:40px;">
                             <div>在线终端</div>
                             <div class="huge">{{ter_ok}}</div>
                         </div>
@@ -16,14 +16,14 @@
 
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 stats" ng-click="goTostate('dashboard.terminal',{status:'2'},21)">
+        <div class="col-lg-3 col-md-6 stats" ng-click="goTostate('dashboard.terminalManage',{status:'2'},21)">
             <div class="panel panel-green">
                 <div class="panel-heading">
                     <div class="clearfix" style="text-align:center;">
-                        <div class="dibik txt-left">
+                        <div class="disIbk txt-left">
                             <i class="iconfont icon-lixian state_offline"></i>
                         </div>
-                        <div class="dibik txt-left" style="margin-left:40px;">
+                        <div class="disIbk txt-left" style="margin-left:40px;">
                             <div>离线终端</div>
                             <div class="huge">{{ter_offline}}</div>
                         </div>
@@ -32,14 +32,14 @@
 
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 stats" ng-click="goTostate('dashboard.terminal',{status:'3'},21)">
+        <div class="col-lg-3 col-md-6 stats" ng-click="goTostate('dashboard.terminalManage',{status:'3'},21)">
             <div class="panel">
                 <div class="panel-heading">
                     <div class="clearfix" style="text-align:center;">
-                        <div class="dibik txt-left">
+                        <div class="disIbk txt-left">
                             <i class="iconfont icon-yichang state_error"></i>
                         </div>
-                        <div class="dibik txt-left" style="margin-left:40px;">
+                        <div class="disIbk txt-left" style="margin-left:40px;">
                             <div>异常终端</div>
                             <div class="huge">{{ter_error}}</div>
                         </div>
@@ -48,14 +48,14 @@
 
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 stats" ng-click="goTostate('dashboard.terminal',{status:'0'},21)">
+        <div class="col-lg-3 col-md-6 stats" ng-click="goTostate('dashboard.terminalManage',{status:'0'},21)">
             <div class="panel">
                 <div class="panel-heading">
                     <div class="clearfix" style="text-align:center;">
-                        <div class="dibik txt-left">
+                        <div class="disIbk txt-left">
                             <i class="iconfont icon-suoyouzhongduan state_all"></i>
                         </div>
-                        <div class="dibik txt-left" style="margin-left:40px;">
+                        <div class="disIbk txt-left" style="margin-left:40px;">
                             <div>未激活终端</div>
                             <div class="huge">{{ter_noAct}}</div>
                         </div>
@@ -76,7 +76,7 @@
                                 <div class="tipLabel">
                                     <i class="icon iconfont {{material.icon}}">
                                     </i>
-                                    <span class="dibik">{{material.name}}</span>
+                                    <span class="disIbk">{{material.name}}</span>
                                 </div>
                             </span>
                         </div>
