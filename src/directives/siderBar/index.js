@@ -197,10 +197,10 @@ let controller = ($rootScope, $scope, $state, baseService) => {
                 $scope.collapseVar = $scope.menuList[i].collapseVar;
             }
         }
-        if (toState.name == 'dashboard.templateAdd' || toState.name == 'dashboard.templateEdit') {
+        if (toState.name == 'dashboard.templateAdd' || toState.name == 'dashboard.templateEdit' || toState.name == 'dashboard.programEdit' || toState.name == 'dashboard.programAdd' || toState.name == 'dashboard.programCopy') {
             $('body').addClass('mini-navbar');
         } else {
-            if (fromState.name == 'dashboard.templateAdd' || toState.name == 'dashboard.templateEdit') {
+            if (fromState.name == 'dashboard.templateAdd' || fromState.name == 'dashboard.templateEdit' || fromState.name == 'dashboard.programEdit' || fromState.name == 'dashboard.programAdd' || fromState.name == 'dashboard.programCopy') {
                 if ($('body').hasClass('mini-navbar')) {
                     $('body').removeClass('mini-navbar')
                 }
