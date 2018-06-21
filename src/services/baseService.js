@@ -25,7 +25,7 @@ const baseService = (httpService, modalService, $rootScope, $state, programServi
             programSchedule: apiUrl + '/api/programSchedule/',
             termialRegReport: apiUrl + '/api/termialRegReport/'
         },
-        md5_pwd (pwd){
+        md5_pwd(pwd) {
             var hexDigits = ['0', '1', '2', '3', '4', '5', '6', '7',
                 '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
             ];
@@ -95,7 +95,7 @@ const baseService = (httpService, modalService, $rootScope, $state, programServi
                     }
                 })
         },
-        postData(url, formData, cb){
+        postData(url, formData, cb) {
             let me = this;
             httpService.postData(url, formData)
                 .then((res) => {
@@ -164,6 +164,9 @@ const baseService = (httpService, modalService, $rootScope, $state, programServi
                 cb(res);
             })
         },
+        trim(str) {
+            return str.replace(/(^\s*)|(\s*$)/g, "");
+        },
         showMaterial(item, detailType, cb) {
             let me = this;
             item.detailType = detailType;
@@ -209,7 +212,7 @@ const baseService = (httpService, modalService, $rootScope, $state, programServi
                         url = me.api.program + 'checkFinal';
                     }
                     modalService.confirm('素材审核', "确定" + (type == 1 ? "通过" : "不通过") + "节目：" + item.name + "?", function (vm, ngDialog) {
-                        me.saveForm(vm,url, {
+                        me.saveForm(vm, url, {
                             id: item.id,
                             status: status
                         }, (res) => {
@@ -236,24 +239,24 @@ const baseService = (httpService, modalService, $rootScope, $state, programServi
                 id: item.id
             }, function (schedule) {
                 schedule.detailType = detailType;
-                modalService.confirmDialog(750, '排期详情', schedule, "/static/tpl/schedule_details.html", function (vm,ngDialog,type) {
-                    modalService.confirm('排期审核', "确定" + (type == 1 ? "通过" : "不通过") + "排期：" + item.name + "?", function (vm,ngDialog) {
+                modalService.confirmDialog(750, '排期详情', schedule, "/static/tpl/schedule_details.html", function (vm, ngDialog, type) {
+                    modalService.confirm('排期审核', "确定" + (type == 1 ? "通过" : "不通过") + "排期：" + item.name + "?", function (vm, ngDialog) {
                         let status;
                         if (type == 1) {
                             status = 1;
                         } else {
                             status = 4;
                         }
-                        me.saveForm(vm,me.api.apiUrl + '/api/programScheduleCheck/checkProgramSchedule', {
+                        me.saveForm(vm, me.api.apiUrl + '/api/programScheduleCheck/checkProgramSchedule', {
                             id: item.id,
                             status: status
                         }, function (res) {
-                            if(res){
+                            if (res) {
                                 ngDialog.close();
                                 modalService.alert('操作成功', 'success');
                                 cb();
                             }
-                            
+
                         });
                     });
                 }, function (vm) {
