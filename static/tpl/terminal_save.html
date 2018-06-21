@@ -29,13 +29,12 @@
 			</div>
 
 		</div>
-		<div class="form-group clearfix ">
+		<div class="form-group clearfix " ng-if="data.id">
 			<label class="col-sm-3 control-label">地址</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" name="addr" required ng-model="data.addr" ng-maxlength="30" ng-pattern="/.*[\u4e00-\u9fa5].*/"
+				<input type="text" class="form-control" name="addr" ng-model="data.addr" ng-maxlength="30" ng-pattern="/.*[\u4e00-\u9fa5].*/"
 				/>
 				<div class="help-block" ng-messages="modalForm.addr.$error" ng-if="isShowMessage">
-					<p ng-message="required">请输入终端地址</p>
 					<p ng-message="pattern">请输入正确地址</p>
 					<p ng-message="maxlength">不能超过30个字符</p>
 				</div>

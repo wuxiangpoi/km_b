@@ -11,6 +11,8 @@ import groupSelect from './groupSelect'
 import imageView from './imageView'
 import kmAudio from './kmAudio'
 import imageThum from './imageThum'
+import eInstructions from './eInstructions'
+
 
 
 import dmbdPager from './pager/dmbdPager';
@@ -32,6 +34,7 @@ const directives = [headerBar,
     imageView,
     kmAudio,
     imageThum,
+    eInstructions,
     dmbdPager,
     imageViewer2,
     videoViewer2,
