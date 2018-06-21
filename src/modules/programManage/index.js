@@ -6,7 +6,7 @@ import {
 } from '../../filter/options';
 
 
-const programManageController = ($scope, $rootScope, $filter, $state, baseService, modalService, leafService) => {
+const programController = ($scope, $rootScope, $filter, $state, baseService, modalService, leafService) => {
 	$scope.displayed = [];
 	$scope.sp = {};
 	$scope.tableState = {};
@@ -446,8 +446,8 @@ const programManageController = ($scope, $rootScope, $filter, $state, baseServic
 	}
 }
 
-programManageController.$inject = ['$scope', '$rootScope', '$filter', '$state', 'baseService', 'modalService', 'leafService'];
+programController.$inject = ['$scope', '$rootScope', '$filter', '$state', 'baseService', 'modalService', 'leafService'];
 
 export default angular => {
-	return angular.module('programManageModule', []).controller('programManageController', programManageController);
+	return angular.module('programModule', []).controller('programController', programController);
 }

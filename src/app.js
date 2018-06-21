@@ -63,6 +63,7 @@ app.run(['$rootScope', '$state', 'baseService', 'ngDialog', ($rootScope, $state,
                             for (var i = 0; i < res.root_organizations.length; i++) {
                                 if (res.root_organizations[i].pid == '') {
                                     $rootScope.rootGroup = res.root_organizations[i];
+                                    $rootScope.root_programReslotions = res.root_programReslotions;
                                 }
                             }
                             $state.go(toState.name, toParams);
