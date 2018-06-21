@@ -59,6 +59,7 @@ app.run(['$rootScope', '$state', 'baseService', 'ngDialog', ($rootScope, $state,
                     baseService.getJson(baseService.api.auth + 'getUserSrc', {}, (res) => {
                         if (res) {
                             $rootScope.userData = res;
+                            $rootScope.root_programReslotions = res.root_programReslotions;
                             for (var i = 0; i < res.root_organizations.length; i++) {
                                 if (res.root_organizations[i].pid == '') {
                                     $rootScope.rootGroup = res.root_organizations[i];

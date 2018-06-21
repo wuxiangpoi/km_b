@@ -56,45 +56,44 @@ let controller = ($rootScope, $scope, $state, baseService) => {
         auth: $rootScope.perms(5),
         collapseVar: 5,
         state: '',
-        states: ['dashboard.materialCheck','dashboard.programCheck','dashboard.scheduleCheck'],
+        states: ['dashboard.materialCheck', 'dashboard.programCheck', 'dashboard.scheduleCheck'],
         icon: 'iconfont icon-shenheguanli',
         children: [{
-            name: '素材审核',
-            auth: $rootScope.perms(51),
-            collapseVar: 5,
-            state: 'dashboard.materialCheck',
-            icon: ''
-        },
-        {
-            name: '节目审核',
-            auth: $rootScope.perms(53),
-            collapseVar: 5,
-            state: 'dashboard.programCheck',
-            icon: ''
-        },
-        {
-            name: '排期审核',
-            auth: $rootScope.perms(54),
-            collapseVar: 5,
-            state: 'dashboard.scheduleCheck',
-            icon: ''
-        }
-    ]
+                name: '素材审核',
+                auth: $rootScope.perms(51),
+                collapseVar: 5,
+                state: 'dashboard.materialCheck',
+                icon: ''
+            },
+            {
+                name: '节目审核',
+                auth: $rootScope.perms(53),
+                collapseVar: 5,
+                state: 'dashboard.programCheck',
+                icon: ''
+            },
+            {
+                name: '排期审核',
+                auth: $rootScope.perms(54),
+                collapseVar: 5,
+                state: 'dashboard.scheduleCheck',
+                icon: ''
+            }
+        ]
     }, {
         name: '账户管理',
         auth: $rootScope.perms(3),
         collapseVar: 3,
         state: '',
-        states: ['dashboard.group','dashboard.user', 'dashboard.role','dashboard.auser'],
+        states: ['dashboard.group', 'dashboard.user', 'dashboard.role', 'dashboard.auser'],
         icon: 'iconfont icon-zhanghuguanli',
-        children: [
-            {
+        children: [{
                 name: '组织机构',
                 auth: $rootScope.perms(31),
                 collapseVar: 3,
                 state: 'dashboard.group',
                 icon: ''
-            },{
+            }, {
                 name: '账号管理',
                 auth: $rootScope.perms(31),
                 collapseVar: 3,
@@ -121,7 +120,7 @@ let controller = ($rootScope, $scope, $state, baseService) => {
         auth: $rootScope.perms(8),
         collapseVar: 8,
         state: '',
-        states: ['dashboard.terminalLoginReport', 'dashboard.terminalPlayReport','dashboard.programPlayReport'],
+        states: ['dashboard.terminalLoginReport', 'dashboard.terminalPlayReport', 'dashboard.programPlayReport'],
         icon: 'iconfont icon-baobiaoguanli',
         children: [{
                 name: '终端注册统计',

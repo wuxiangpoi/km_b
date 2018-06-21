@@ -33,6 +33,7 @@ const loginController = ($scope, $rootScope, baseService) => {
                     }
                     baseService.getJson(baseService.api.auth + 'getUserSrc', {},function (userData) {
                         $rootScope.userData = userData;
+                        $rootScope.root_programReslotions = userData.root_programReslotions;
                         for (var i = 0; i < userData.root_organizations.length; i++) {
                             if (userData.root_organizations[i].pid == '') {
                                 $rootScope.rootGroup = userData.root_organizations[i];

@@ -297,6 +297,9 @@ a.btn {
 
 .btn {
   transition: .3s;
+  &.disabled {
+       pointer-events: none;
+  }
   &:focus {
     outline: none!important;
   }

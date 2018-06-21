@@ -209,7 +209,7 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 		modalService.confirmDialog(540, '编辑终端信息', modalData, '/static/tpl/terminal_save.html', (vm, ngDialog) => {
 			if (vm.modalForm.$valid) {
 				let formData = {
-					name: vm.data.name,
+					name: baseService.trim(vm.data.name,'g'),
 					id: vm.data.id,
 					city_no: vm.data.city_no,
 					remark: vm.data.remark ? vm.data.remark : '',

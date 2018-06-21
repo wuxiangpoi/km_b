@@ -12,7 +12,7 @@ import imageView from './imageView'
 import imageJrop from './imageJrop'
 import kmAudio from './kmAudio'
 import imageThum from './imageThum'
-
+import eInstructions from './eInstructions'
 
 import dmbdPager from './pager/dmbdPager';
 import imageViewer2 from './imageViewer/imageViewer2';
@@ -34,6 +34,7 @@ const directives = [headerBar,
     imageJrop,
     kmAudio,
     imageThum,
+    eInstructions,
     dmbdPager,
     imageViewer2,
     videoViewer2,
