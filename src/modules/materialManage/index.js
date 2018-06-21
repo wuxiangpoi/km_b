@@ -164,6 +164,7 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
             if (vm.uploader.queue.length) {
                 var filenameArray = [];
                 for (var i = 0; i < vm.uploader.queue.length; i++) {
+                    vm.uploader.queue[i].file.desc = baseService.trim(vm.uploader.queue[i].file.desc,'g');
                     filenameArray.push(vm.uploader.queue[i].file.desc);
                 }
                 baseService.saveForm(vm,baseService.api.material + 'addMaterial_checkUpload', {
