@@ -164,9 +164,15 @@ const baseService = (httpService, modalService, $rootScope, $state, programServi
                 cb(res);
             })
         },
-        trim(str) {
-            return str.replace(/(^\s*)|(\s*$)/g, "");
-        },
+        trim(str,is_global) {
+            var result;
+            result = str.replace(/(^\s+)|(\s+$)/g,"");
+            if(is_global.toLowerCase()=="g")
+            {
+             result = result.replace(/\s/g,"");
+             }
+            return result;
+         },
         showMaterial(item, detailType, cb) {
             let me = this;
             item.detailType = detailType;

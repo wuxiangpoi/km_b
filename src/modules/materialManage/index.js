@@ -274,7 +274,7 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
             if (vm.modalForm.$valid) {
                 baseService.saveForm(vm, baseService.api.material + 'saveMaterial', {
                     id: item.id,
-                    name: baseService.trim(vm.data.name)
+                    name: baseService.trim(vm.data.name,'g')
                 }, function (res) {
                     if (res) {
                         vm.closeThisDialog();
