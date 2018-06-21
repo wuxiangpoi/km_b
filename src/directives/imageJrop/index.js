@@ -56,6 +56,7 @@ export default app => {
                     });
                 }else{
                     base64data(fileItem, function (src) {
+                        $scope.isJcrop = true;
                         $scope.imgSrc = src;
                         $scope.uploader.queue = [];
                         $scope.$apply();

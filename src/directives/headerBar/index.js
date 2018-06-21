@@ -53,7 +53,9 @@ let controller = ($scope,$rootScope, baseService, modalService) => {
         })
     }
     $scope.updateLogo = function(){
-        modalService.confirmDialog(540, '修改Logo', {}, 'static/tpl/update_logo.html', function (vm, ngDialog) {
+        modalService.confirmDialog(540, '修改Logo', {
+            info: '(支持jpg,png,jpeg,bmp格式的图片，不超过5M)'
+        }, 'static/tpl/update_logo.html', function (vm, ngDialog) {
             vm.$broadcast('uploadImg',() => {});
         })
     }
