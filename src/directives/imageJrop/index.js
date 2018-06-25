@@ -39,7 +39,7 @@ export default app => {
                         type: 0
                     }, function (obj) {
                         var new_multipart_params = {
-                            'key': (obj['key'] + item.file.name.substr(item.file.name.lastIndexOf('.'))),
+                            'key': (obj['key'] + item.file.name),
                             'policy': obj['policy'],
                             'OSSAccessKeyId': obj['accessid'],
                             'success_action_status': '200', //让服务端返回200,不然，默认会返回204
