@@ -113,9 +113,16 @@
                 }
             }
         }
-        &>li:hover>.nav-second-level {
-            display: block;
-            
+        &>li:hover {
+            width: 200px;
+            a span {
+                margin-left: 20px;
+                display: inline-block;
+            }
+            &>.nav-second-level {
+                display: block;
+                
+            }
         }
         .firstLevel.indicator {
             top: 0;
