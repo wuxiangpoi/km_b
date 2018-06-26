@@ -11,6 +11,8 @@ export default app => {
             let beforeUpload = (item) => {
                 var imgfile_type = $rootScope.getRootDicNameStrs('image_format');
                 var videofile_type = $rootScope.getRootDicNameStrs('video_format');
+                var audiofile_type = ',mp3,';
+                var programfile_type = ',zip,';
                 var host = '';
                 var accessid = '';
                 var policyBase64 = '';
@@ -27,8 +29,10 @@ export default app => {
                     xType = 0;
                 } else if ((',' + videofile_type.toLowerCase() + ',').indexOf(type) != -1) {
                     xType = 1;
-                } else {
+                } else if ((',' + audiofile_type.toLowerCase() + ',').indexOf(type) != -1){
                     xType = 2;
+                }else {
+                    xType = 3;
                 }
                 baseService.postData(baseService.api.material + 'addMaterial_getOssSignature', {
                     type: xType
