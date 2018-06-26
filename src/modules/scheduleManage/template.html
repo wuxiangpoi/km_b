@@ -37,37 +37,28 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-						<td class="tdClick ellipsisTd" ng-click="showSchedule(row)">
-							{{row.name}}
+					<tr ng-repeat="row in displayed" bindonce>
+						<td class="tdClick ellipsisTd" ng-click="showSchedule(row)" bo-text="row.name"></td>
+						<td bo-text="row.creator"></td>
+						<td class="createTimeTd" bo-text="row.createTime | formateTime"></td>
+						<td>
+							<div class="tdClick" ng-click="sendCommandStopProgram(row)" bo-text="row.playTers"></div>
 						</td>
 						<td>
-							{{row.creator}}
-						</td>
-
-						<td class="createTimeTd">
-							{{row.createTime | formateTime}}
+							<div class="txtGrey" bo-if="row.status == 0">{{row.status | scheduleStatusTxt}}</div>
+							<div bo-if="row.status == 1 || row.status == 2">{{row.status | scheduleStatusTxt}}</div>
+							<div class="txtRed" bo-if="row.status == 4">{{row.status | scheduleStatusTxt}}</div>
 						</td>
 						<td>
-							<div class="tdClick" ng-click="sendCommandStopProgram(row)">
-								{{row.playTers}}
-							</div>
-						</td>
-						<td>
-							<div class="txtGrey" ng-if="row.status == 0">{{row.status | scheduleStatusTxt}}</div>
-							<div ng-if="row.status == 1 || row.status == 2">{{row.status | scheduleStatusTxt}}</div>
-							<div class="txtRed" ng-if="row.status == 4">{{row.status | scheduleStatusTxt}}</div>
-						</td>
-						<td>
-							<button ng-if="[0,4].indexOf(row.status) != -1 && perms(444)" class="btn tableBtn" ng-click="submitCheck(row)">提交审核
+							<button bo-if="[0,4].indexOf(row.status) != -1 && perms(444)" class="btn tableBtn" ng-click="submitCheck(row)">提交审核
 							</button>
-							<button ng-if="[0,4].indexOf(row.status) != -1 && perms(442)" class="btn tableBtn" ng-click="edit(row)">修改
+							<button bo-if="[0,4].indexOf(row.status) != -1 && perms(442)" class="btn tableBtn" ng-click="edit(row)">修改
 							</button>
-							<button ng-if="row.status == 1 && perms(445)" class="btn tableBtn" ng-click="sendDown(row)">发布
+							<button bo-if="row.status == 1 && perms(445)" class="btn tableBtn" ng-click="sendDown(row)">发布
 							</button>
-							<button ng-if="row.status == 1 && perms(442)" class="btn tableBtn" ng-click="saveAs(row,tableState.pagination.start)">另存为
+							<button bo-if="row.status == 1 && perms(442)" class="btn tableBtn" ng-click="saveAs(row,tableState.pagination.start)">另存为
 							</button>
-							<button ng-if="[0,4].indexOf(row.status) != -1 && perms(443)" class="btn tableBtn" ng-click="del(row)">删除
+							<button bo-if="[0,4].indexOf(row.status) != -1 && perms(443)" class="btn tableBtn" ng-click="del(row)">删除
 							</button>
 						</td>
 					</tr>

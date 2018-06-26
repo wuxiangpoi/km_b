@@ -55,12 +55,12 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-                        <td>{{row.terminalNo}}</td>
-                        <td>{{row.terminalName}}</td>
-                        <td>{{row.city_no | getCityName}}</td>
-                        <td class="tdClick" ng-click="showProgram(row)">{{row.programCount}}</td>
-                        <td>{{row.duration | secToTime}}</td>
+					<tr ng-repeat="row in displayed" bindonce>
+                        <td bo-text="row.terminalNo"></td>
+                        <td bo-text="row.terminalName"></td>
+                        <td bo-text="row.city_no | getCityName"></td>
+                        <td bo-text="row.programCount" class="tdClick" ng-click="showProgram(row)"></td>
+                        <td bo-text="row.duration | secToTime"></td>
                     </tr>
 				</tbody>
 				<tbody me-include="/static/tpl/table.html"></tbody>

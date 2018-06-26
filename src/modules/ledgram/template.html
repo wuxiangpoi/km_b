@@ -31,15 +31,15 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-						<td class="ellipsisTd">{{row.name}}</td>
-						<td class="createTimeTd">{{row.createTime | formateTime}}</td>
-						<td title="{{row.text}}">{{row.text}}</td>
+					<tr ng-repeat="row in displayed" bindonce>
+						<td class="ellipsisTd" bo-text="row.name"></td>
+						<td class="createTimeTd" bo-text="row.createTime | formateTime"></td>
+						<td bo-title="row.text" bo-text="row.text"></td>
 						<td>
 							<div>
-								<button ng-if="perms(722)" class="btn tableBtn" ng-click="save(row)">编辑</button>
-								<button ng-if="perms(724)" class="btn tableBtn" ng-click="sendDown(row)">节目下发</button>
-								<button ng-if="perms(723)" class="btn tableBtn" ng-click="del(row,$index)">删除</button>
+								<button bo-if="perms(722)" class="btn tableBtn" ng-click="save(row)">编辑</button>
+								<button bo-if="perms(724)" class="btn tableBtn" ng-click="sendDown(row)">节目下发</button>
+								<button bo-if="perms(723)" class="btn tableBtn" ng-click="del(row,$index)">删除</button>
 							</div>
 						</td>
 					</tr>

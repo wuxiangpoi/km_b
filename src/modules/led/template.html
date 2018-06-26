@@ -53,24 +53,24 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
+					<tr ng-repeat="row in displayed" bindonce>
 						<td class="checkTd">
 							<input ng-click="checkThis(row,$event)" ng-checked="ids.indexOf(row.id) != -1" type="checkbox">
 						</td>
-						<td>{{row.sn}}</td>
-						<td class="ellipsisTd">{{row.name}}</td>
-						<td>{{row.model}}</td>
-						<td>{{row.width + "*" + row.height}}</td>
+						<td bo-text="row.sn"></td>
+						<td class="ellipsisTd" bo-text="row.name"></td>
+						<td bo-text="row.model"></td>
+						<td bo-text="row.width + '*' + row.height"></td>
 						<td>
-							<div ng-if="row.screenColor == 1">单色</div>
-							<div ng-if="row.screenColor == 0">双色</div>
+							<div bo-if="row.screenColor == 1">单色</div>
+							<div bo-if="row.screenColor == 0">双色</div>
 						</td>
-						<td class="ellipsisTd" title="{{row.addr}}">{{row.addr}}</td>
+						<td class="ellipsisTd" bo-title="row.addr"  bo-text="row.addr"></td>
 						<td style="min-width:180px;">
 							<div>
-								<button ng-if="perms(712)" class="btn tableBtn" ng-click="save(row)">编辑</button>
-								<button ng-if="perms(714)" class="btn tableBtn" ng-click="playManage(row)">播放管理</button>
-								<button ng-if="perms(713)" class="btn tableBtn" ng-click="del(row,$index)">删除</button>
+								<button bo-if="perms(712)" class="btn tableBtn" ng-click="save(row)">编辑</button>
+								<button bo-if="perms(714)" class="btn tableBtn" ng-click="playManage(row)">播放管理</button>
+								<button bo-if="perms(713)" class="btn tableBtn" ng-click="del(row,$index)">删除</button>
 							</div>
 						</td>
 					</tr>

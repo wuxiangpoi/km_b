@@ -1,28 +1,28 @@
 <div class="page-wrap animated fadeInRight" style="min-width: 800px;">
-	<div class="level2 clearfix">
-		<button ng-if="perms(412)" type="button" ng-click="save()" class="btn btn-primary">
+	<div class="level2 clearfix" bindonce>
+		<button bo-if="perms(412)" type="button" ng-click="save()" class="btn btn-primary">
 			<i class="iconfont icon-tianjia-"></i>
 			添加素材
 		</button>
-		<button ng-if="perms(417)" type="button" ng-click="ids.length != 0?setGroup():''" ng-class="{'disabled-sham': ids.length == 0}"
+		<button bo-if="perms(417)" type="button" ng-click="ids.length != 0?setGroup():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择素材'}}"
 		    bs-tooltip class="btn btn-primary warning">
 			设置所属机构
 		</button>
-		<button ng-if="perms(415)" type="button" ng-click="addGroup()" class="btn btn-primary warning">
+		<button bo-if="perms(415)" type="button" ng-click="addGroup()" class="btn btn-primary warning">
 			添加分组
 		</button>
-		<button ng-if="perms(416)" type="button" ng-click="ids.length != 0?setLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
+		<button bo-if="perms(416)" type="button" ng-click="ids.length != 0?setLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择素材'}}"
 		    bs-tooltip class="btn btn-primary warning">
 			设置分组
 		</button>
-		<button ng-if="perms(416)" type="button" ng-click="ids.length != 0?cancelLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
+		<button bo-if="perms(416)" type="button" ng-click="ids.length != 0?cancelLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择素材'}}"
 		    bs-tooltip class="btn btn-primary warning">
 			取消分组
 		</button>
-		<button ng-if="perms(418)" type="button" ng-click="idsNoSubmitCheck.length == 0 || idsNoSubmitCheck.length != ids.length?'':submitCheck()"
+		<button bo-if="perms(418)" type="button" ng-click="idsNoSubmitCheck.length == 0 || idsNoSubmitCheck.length != ids.length?'':submitCheck()"
 		    ng-class="{'disabled-sham': idsNoSubmitCheck.length == 0 || idsNoSubmitCheck.length != ids.length}" data-trigger="hover"
 		    bs-enabled="idsNoSubmitCheck.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择待提交审核的素材'}}" bs-tooltip
 		    class="btn btn-primary warning">
@@ -90,60 +90,55 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-							<td class="checkBoxTable">
-									<input ng-click="checkThis(row,$event)" ng-checked="ids.indexOf(row.id) != -1" type="checkbox">
-								</td>
-								<td class="tdClick ellipsisTd" ng-click="showMaterial(row)">
-									<div style="position:relative;">
-										<div style="width:80px;position:absolute;top:10px;">
-											<img ng-if="row.type == 0" src="/static/img/loading.gif" style="width:80px;height:60px;" lazy-src="{{dmbdOSSImageUrlResizeFilter(row.path,100)}}">
-											<img ng-if="row.type == 1" src="/static/img/loading.gif" style="width:80px;height:60px;" lazy-src="{{ata.status == 7?'/static/img/no_pic.jpg':dmbdOSSImageUrlResizeFilter(row.snapshot,100)}}">
-											<div ng-if="row.type == 1" class="vedioPre">
-												<i class="iconfont icon-xialajiantou"></i>
-											</div>
-											<div ng-if="row.type == 2" class="audioPreWrap">
-												<div class="audioPre">
-													<i class="fa fa-music"></i>
-												</div>
-											</div>
-											<div ng-if="row.type == 3" class="audioPreWrap">
-												<div class="vedioPre">
-													<i class="iconfont icon-sucaiguanli-yasuobao"></i>
-												</div>
-											</div>
-			
-										</div>
-										<div class="ellipsTXt" title="{{row.name}}" style="padding-left:85px;line-height:80px;">{{row.name}}</div>
+					<tr ng-repeat="row in displayed" bindonce>
+						<td class="checkBoxTable">
+							<input ng-click="checkThis(row,$event)" ng-checked="ids.indexOf(row.id) != -1" type="checkbox">
+						</td>
+						<td class="tdClick ellipsisTd" ng-click="showMaterial(row)">
+							<div style="position:relative;">
+								<div style="width:80px;position:absolute;top:10px;">
+									<img bo-if="row.type == 0" src="/static/img/loading.gif" style="width:80px;height:60px;" lazy-src="{{dmbdOSSImageUrlResizeFilter(row.path,100)}}">
+									<img bo-if="row.type == 1" src="/static/img/loading.gif" style="width:80px;height:60px;" lazy-src="{{ata.status == 7?'/static/img/no_pic.jpg':dmbdOSSImageUrlResizeFilter(row.snapshot,100)}}">
+									<div bo-if="row.type == 1" class="vedioPre">
+										<i class="iconfont icon-xialajiantou"></i>
 									</div>
-			
-								</td>
-								<td>{{row.size | dmbdResourceSizeFilter}}</td>
-								<td>
-										<span ng-if="row.type != 2 && row.type != 3">
-												{{row.width + "*" + row.height}}
-											</span>
-								</td>
-								<td>
-									<div class="txtGrey" ng-if="row.status == 0">{{row.status | materialStatusTxt}}</div>
-									<div ng-if="row.status == 1 || row.status == 2 || row.status == 3 || row.status == 6 || row.status == 7">{{row.status | materialStatusTxt}}</div>
-									<div class="txtRed" ng-if="row.status == 4 || row.status == 5">{{row.status | materialStatusTxt}}</div>
-								</td>
-								<td class="createTimeTd">
-									{{row.createTime | formateTime}}
-								</td>
-								<td>
-									<button ng-if="[0,4,5].indexOf(row.status) != -1 && perms(418)" class="btn tableBtn"
-										ng-click="submitCheck(row)">提交审核
-									</button>
-									<button ng-if="[0,1,2,3,7].indexOf(row.status) != -1 && perms(413)"
-										class="btn tableBtn" ng-click="saveName(row)">修改名称
-									</button>
-									<button ng-if="[0,4,5,6].indexOf(row.status) != -1 && perms(414)" class="btn tableBtn"
-										ng-click="del(row)">删除
-									</button>
-									<a ng-if="row.type == 3" href="{{row.path}}" class="btn tableBtn">下载</a>
-								</td>
+									<div bo-if="row.type == 2" class="audioPreWrap">
+										<div class="audioPre">
+											<i class="fa fa-music"></i>
+										</div>
+									</div>
+									<div bo-if="row.type == 3" class="audioPreWrap">
+										<div class="vedioPre">
+											<i class="iconfont icon-sucaiguanli-yasuobao"></i>
+										</div>
+									</div>
+
+								</div>
+								<div class="ellipsTXt" title="{{row.name}}" style="padding-left:85px;line-height:80px;">{{row.name}}</div>
+							</div>
+
+						</td>
+						<td bo-text="row.size | dmbdResourceSizeFilter"></td>
+						<td>
+							<span bo-if="row.type != 2 && row.type != 3">
+								{{row.width + "*" + row.height}}
+							</span>
+						</td>
+						<td>
+							<div class="txtGrey" bo-if="row.status == 0">{{row.status | materialStatusTxt}}</div>
+							<div bo-if="row.status == 1 || row.status == 2 || row.status == 3 || row.status == 6 || row.status == 7">{{row.status | materialStatusTxt}}</div>
+							<div class="txtRed" bo-if="row.status == 4 || row.status == 5">{{row.status | materialStatusTxt}}</div>
+						</td>
+						<td class="createTimeTd" bo-text="row.createTime | formateTime"></td>
+						<td>
+							<button bo-if="[0,4,5].indexOf(row.status) != -1 && perms(418)" class="btn tableBtn" ng-click="submitCheck(row)">提交审核
+							</button>
+							<button bo-if="[0,1,2,3,7].indexOf(row.status) != -1 && perms(413)" class="btn tableBtn" ng-click="saveName(row)">修改名称
+							</button>
+							<button bo-if="[0,4,5,6].indexOf(row.status) != -1 && perms(414)" class="btn tableBtn" ng-click="del(row)">删除
+							</button>
+							<a bo-if="row.type == 3" href="{{row.path}}" class="btn tableBtn">下载</a>
+						</td>
 					</tr>
 				</tbody>
 				<tbody me-include="/static/tpl/table.html"></tbody>

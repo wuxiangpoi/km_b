@@ -1,23 +1,23 @@
 <div class="page-wrap animated fadeInRight" style="min-width: 710px;">
-	<div class="level2 clearfix">
-		<button ng-if="perms(432)" type="button" ui-sref="dashboard.programAdd" class="btn btn-primary">
+	<div class="level2 clearfix" bindonce>
+		<button bo-if="perms(432)" type="button" ui-sref="dashboard.programAdd" class="btn btn-primary">
 			<i class="iconfont icon-tianjia-"></i>
 			制作节目
 		</button>
-		<button ng-if="perms(439)" type="button" ng-click="ids.length != 0?setGroup():''" ng-class="{'disabled-sham': ids.length == 0}"
+		<button bo-if="perms(439)" type="button" ng-click="ids.length != 0?setGroup():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择节目'}}"
 		    bs-tooltip class="btn btn-primary warning">
 			设置所属机构
 		</button>
-		<button ng-if="perms(437)" type="button" ng-click="addGroup()" class="btn btn-primary warning">
+		<button bo-if="perms(437)" type="button" ng-click="addGroup()" class="btn btn-primary warning">
 			添加分组
 		</button>
-		<button ng-if="perms(438)" type="button" ng-click="ids.length != 0?setLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
+		<button bo-if="perms(438)" type="button" ng-click="ids.length != 0?setLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择节目'}}"
 		    bs-tooltip class="btn btn-primary warning">
 			设置分组
 		</button>
-		<button ng-if="perms(438)" type="button" ng-click="ids.length != 0?cancelLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
+		<button bo-if="perms(438)" type="button" ng-click="ids.length != 0?cancelLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择节目'}}"
 		    bs-tooltip class="btn btn-primary warning">
 			取消分组
@@ -87,39 +87,33 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
+					<tr ng-repeat="row in displayed" bindonce>
 						<td class="checkTd">
 							<input ng-click="checkThis(row,$event)" ng-checked="ids.indexOf(row.id) != -1" type="checkbox">
 						</td>
-						<td class="tdClick ellipsisTd" title="{{row.name}}" ng-click="showProgram(row)">
-							{{row.name}}
-						</td>
-						<td>{{row.size | dmbdResourceSizeFilter}}</td>
+						<td class="tdClick ellipsisTd" bo-title="row.name" bo-text="row.name" ng-click="showProgram(row)"></td>
+						<td bo-text="row.size | dmbdResourceSizeFilter"></td>
 						<td>
-							<div class="txtGrey" ng-if="row.status == 0">{{row.status | programStatusTxt}}</div>
-							<div ng-if="row.status == 1 || row.status == 2 || row.status == 3 || row.status == 6">{{row.status | programStatusTxt}}</div>
-							<div class="txtRed" ng-if="row.status == 4 || row.status == 5 || row.status == 7">{{row.status | programStatusTxt}}</div>
+							<div class="txtGrey" bo-if="row.status == 0">{{row.status | programStatusTxt}}</div>
+							<div bo-if="row.status == 1 || row.status == 2 || row.status == 3 || row.status == 6">{{row.status | programStatusTxt}}</div>
+							<div class="txtRed" bo-if="row.status == 4 || row.status == 5 || row.status == 7">{{row.status | programStatusTxt}}</div>
 
 						</td>
 
-						<td class="createTimeTd">
-							{{row.createTime | formateTime}}
+						<td class="createTimeTd" bo-text="row.createTime | formateTime"></td>
+						<td>
+							<div class="tdClick" ng-click="sendCommandStopProgram(row,$index)" bo-text="row.playTers"></div>
 						</td>
 						<td>
-							<div class="tdClick" ng-click="sendCommandStopProgram(row,$index)">
-								{{row.playTers}}
-							</div>
-						</td>
-						<td>
-							<button ng-if="[0,4,5,7].indexOf(row.status) != -1 && perms(435)" class="btn tableBtn" ng-click="submitCheck(row)">提交审核
+							<button bo-if="[0,4,5,7].indexOf(row.status) != -1 && perms(435)" class="btn tableBtn" ng-click="submitCheck(row)">提交审核
 							</button>
-							<button ng-if="[0,4,5,7].indexOf(row.status) != -1 && perms(432)" class="btn tableBtn" ng-click="saveEdit(row)">修改
+							<button bo-if="[0,4,5,7].indexOf(row.status) != -1 && perms(432)" class="btn tableBtn" ng-click="saveEdit(row)">修改
 							</button>
-							<button ng-if="row.status == 1 && perms(436)" class="btn tableBtn" ng-click="sendDown(row)">发布
+							<button bo-if="row.status == 1 && perms(436)" class="btn tableBtn" ng-click="sendDown(row)">发布
 							</button>
-							<button ng-if="[1,2,3,6].indexOf(row.status) != -1 && perms(432)" class="btn tableBtn" ng-click="saveAs(row)">另存为
+							<button bo-if="[1,2,3,6].indexOf(row.status) != -1 && perms(432)" class="btn tableBtn" ng-click="saveAs(row)">另存为
 							</button>
-							<button ng-if="[0,1,4,5,7].indexOf(row.status) != -1 && perms(433)" class="btn tableBtn" ng-click="del(row)">删除
+							<button bo-if="[0,1,4,5,7].indexOf(row.status) != -1 && perms(433)" class="btn tableBtn" ng-click="del(row)">删除
 							</button>
 						</td>
 					</tr>

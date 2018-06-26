@@ -19,6 +19,7 @@ let loadBasicModules = () => {
         'ngMessages',
         'smart-table',
         'uiSlider',
+        'pasvaz.bindonce',
         'qmedia.editor'
     ];
     return ngDepModules;

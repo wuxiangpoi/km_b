@@ -55,11 +55,11 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-						<td title="{{row.account}}">{{row.createTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
-						<td>{{row.no}}</td>
-						<td>{{row.name}}</td>
-						<td>{{row.city_no | getCityName}}</td>
+					<tr ng-repeat="row in displayed" bindonce>
+						<td bo-title="row.account" bo-text="row.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
+						<td bo-text="row.no"></td>
+						<td bo-text="row.name"></td>
+						<td bo-text="row.city_no | getCityName"></td>
 					</tr>
 				</tbody>
 				<tbody me-include="/static/tpl/table.html"></tbody>

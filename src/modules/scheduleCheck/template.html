@@ -26,24 +26,17 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-						<td class="tdClick ellipsisTd" title="{{row.name}}" ng-click="showSchedule(row,2)">
-							{{row.name}}
+					<tr ng-repeat="row in displayed" bindonce>
+						<td class="tdClick ellipsisTd" bo-title="row.name" bo-text="row.name" ng-click="showSchedule(row,2)"></td>
+						<td bo-text="row.creator"></td>
+						<td class="createTimeTd" bo-text="row.createTime | formateTime"></td>
+						<td>
+							<div class="txtGrey" bo-if="row.status == 0">{{row.status | scheduleStatusTxt}}</div>
+							<div bo-if="row.status == 1 || row.status == 2">{{row.status | scheduleStatusTxt}}</div>
+							<div class="txtRed" bo-if="row.status == 4">{{row.status | scheduleStatusTxt}}</div>
 						</td>
 						<td>
-							{{row.creator}}
-						</td>
-
-						<td class="createTimeTd">
-							{{row.createTime | formateTime}}
-						</td>
-						<td>
-							<div class="txtGrey" ng-if="row.status == 0">{{row.status | scheduleStatusTxt}}</div>
-							<div ng-if="row.status == 1 || row.status == 2">{{row.status | scheduleStatusTxt}}</div>
-							<div class="txtRed" ng-if="row.status == 4">{{row.status | scheduleStatusTxt}}</div>
-						</td>
-						<td>
-							<button ng-if="perms(54)" class="btn tableBtn" ng-click="showSchedule(row,1)">审核
+							<button bo-if="perms(54)" class="btn tableBtn" ng-click="showSchedule(row,1)">审核
 							</button>
 
 						</td>

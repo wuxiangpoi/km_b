@@ -33,9 +33,9 @@
 								<div class="dateTimeSelectWrap">
 									<input id="dateSel" type="text" class="form-control" data-date-type="string" data-date-format="yyyy-MM" data-model-date-format="yyyy-MM"
 									    ng-model="dateSel" placeholder="起始日期" data-autoclose="1" data-start-view="1" data-min-view="1" bs-datepicker>
-										<label for="dateSel" class="timeLabel">{{dateSel}}
-											<span class="caret"></span>
-										</label>
+									<label for="dateSel" class="timeLabel">{{dateSel}}
+										<span class="caret"></span>
+									</label>
 								</div>
 							</div>
 						</div>
@@ -53,12 +53,14 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-						<td class="tdClick" ng-click="showProgram(row)">{{row.programName}}</td>
-						<td>{{row.terminalCount}}</td>
-						<td>{{row.duration | secToTime}}</td>
-						<td><button class="btn tableBtn" ui-sref="dashboard.programPlayDetail({id:row.programId,name:row.programName,month:row.month,pos:tableState.pagination.start})">详情
-						</button></td>
+					<tr ng-repeat="row in displayed" bindonce>
+						<td class="tdClick" ng-click="showProgram(row)" bo-text="row.programName"></td>
+						<td bo-text="row.terminalCount"></td>
+						<td bo-text="row.duration | secToTime"></td>
+						<td>
+							<button class="btn tableBtn" ui-sref="dashboard.programPlayDetail({id:row.programId,name:row.programName,month:row.month,pos:tableState.pagination.start})">详情
+							</button>
+						</td>
 					</tr>
 				</tbody>
 				<tbody me-include="/static/tpl/table.html"></tbody>

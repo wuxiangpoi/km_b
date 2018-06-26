@@ -32,44 +32,40 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
+					<tr ng-repeat="row in displayed" bindonce>
 						<td class="tdClick ellipsisTd" ng-click="showMaterial(row,0)">
 							<div style="position:relative;">
 								<div style="width:80px;position:absolute;top:10px;">
-									<img ng-if="row.type == 0" src="/static/img/loading.gif" style="width:80px;height:60px;" lazy-src="{{dmbdOSSImageUrlResizeFilter(row.path,100)}}">
-									<img ng-if="row.type == 1" src="/static/img/loading.gif" style="width:80px;height:60px;" lazy-src="{{ata.status == 7?'/static/img/no_pic.jpg':dmbdOSSImageUrlResizeFilter(row.snapshot,100)}}">
-									<div ng-if="row.type == 1" class="vedioPre">
+									<img bo-if="row.type == 0" src="/static/img/loading.gif" style="width:80px;height:60px;" lazy-src="{{dmbdOSSImageUrlResizeFilter(row.path,100)}}">
+									<img bo-if="row.type == 1" src="/static/img/loading.gif" style="width:80px;height:60px;" lazy-src="{{ata.status == 7?'/static/img/no_pic.jpg':dmbdOSSImageUrlResizeFilter(row.snapshot,100)}}">
+									<div bo-if="row.type == 1" class="vedioPre">
 										<i class="iconfont icon-xialajiantou"></i>
 									</div>
-									<div ng-if="row.type == 2" class="audioPreWrap">
+									<div bo-if="row.type == 2" class="audioPreWrap">
 										<div class="audioPre">
 											<i class="fa fa-music"></i>
 										</div>
 									</div>
-									<div ng-if="row.type == 3" class="audioPreWrap">
+									<div bo-if="row.type == 3" class="audioPreWrap">
 										<div class="vedioPre">
 											<i class="iconfont icon-sucaiguanli-yasuobao"></i>
 										</div>
 									</div>
 								</div>
-								<div class="ellipsTXt" title="{{row.name}}" style="padding-left:85px;line-height:80px;">{{row.name}}</div>
+								<div class="ellipsTXt" bo-title="row.name" style="padding-left:85px;line-height:80px;">{{row.name}}</div>
 							</div>
 
 						</td>
-						<td>{{row.size | dmbdResourceSizeFilter}}</td>
+						<td bo-text="row.size | dmbdResourceSizeFilter"></td>
 						<td>
-							<span ng-if="row.type != 2 && row.type != 3">
+							<span bo-if="row.type != 2 && row.type != 3">
 								{{row.width + "*" + row.height}}
 							</span>
 						</td>
+						<td bo-text="row.status | materialStatusTxt"></td>
+						<td class="createTimeTd" bo-text="row.createTime | formateTime"></td>
 						<td>
-							{{row.status | materialStatusTxt}}
-						</td>
-						<td class="createTimeTd">
-							{{row.createTime | formateTime}}
-						</td>
-						<td>
-							<button ng-if="perms(51)" class="btn tableBtn" ng-click="showMaterial(row,1)">审核
+							<button bo-if="perms(51)" class="btn tableBtn" ng-click="showMaterial(row,1)">审核
 							</button>
 							<a ng-if="row.type == 3" href="{{row.path}}" class="btn tableBtn">下载</a>
 						</td>

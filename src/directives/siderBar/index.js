@@ -41,8 +41,8 @@ let controller = ($rootScope, $scope, $state, baseService) => {
         name: '节目管理',
         auth: $rootScope.perms(43),
         collapseVar: 43,
-        state: 'dashboard.programManage',
-        states: ['dashboard.programManage'],
+        state: 'dashboard.program',
+        states: ['dashboard.program'],
         icon: 'iconfont icon-jiemuguanli'
     }, {
         name: '排期管理',

@@ -1,6 +1,6 @@
 <div class="page-wrap animated fadeInRight"  style="min-width: 780px;">
-	<div class="level2 clearfix">
-		<div class="dropdown-toolTip-wrap" ng-if="perms(217)">
+	<div class="level2 clearfix" bindonce>
+		<div class="dropdown-toolTip-wrap" bo-if="perms(217)">
 			<button type="button" ng-if="idsNormal.length == 0 || idsNormal.length != ids.length" data-trigger="hover" bs-enabled="idsNormal.length == 0 || idsNormal.length != ids.length"
 			    data-placement="bottom" data-type="success" data-title="{{'请先选择在线终端'}}" bs-tooltip class="btn toolTipPrev btn-primary warning">
 			</button>
@@ -17,20 +17,20 @@
 			</ul>
 		</div>
 
-		<button ng-if="perms(218)" type="button" ng-click="ids.length != 0?setGroup():''" ng-class="{'disabled-sham': ids.length == 0}"
+		<button bo-if="perms(218)" type="button" ng-click="ids.length != 0?setGroup():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择终端'}}"
 		    bs-tooltip class="btn btn-primary warning">
 			设置所属机构
 		</button>
-		<button ng-if="perms(212)" type="button" ng-click="addGroup()" class="btn btn-primary warning">
+		<button bo-if="perms(212)" type="button" ng-click="addGroup()" class="btn btn-primary warning">
 			添加分组
 		</button>
-		<button ng-if="perms(214)" type="button" ng-click="ids.length != 0?setLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
+		<button bo-if="perms(214)" type="button" ng-click="ids.length != 0?setLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择终端'}}"
 		    bs-tooltip class="btn btn-primary warning">
 			设置分组
 		</button>
-		<button ng-if="perms(214)" type="button" ng-click="ids.length != 0?cancelLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
+		<button bo-if="perms(214)" type="button" ng-click="ids.length != 0?cancelLeaf():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择终端'}}"
 		    bs-tooltip class="btn btn-primary warning">
 			取消分组
@@ -108,26 +108,20 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
+					<tr ng-repeat="row in displayed" bindonce>
 						<td class="checkTd">
 							<input ng-click="checkThis(row,$event)" ng-checked="ids.indexOf(row.id) != -1" type="checkbox">
 						</td>
-						<td class="tdClick" ng-click="details(row)">{{row.no}}</td>
-						<td>{{row.name}}</td>
+						<td class="tdClick" ng-click="details(row)" bo-text="row.no"></td>
+						<td bo-text="row.name"></td>
+						<td bo-text="row.status | terminalStatusTxt" bo-class="{'txtGreen':row.status == 1,'txtRed':row.status == 3,'txtGrey':row.status == 2 || row.status == 4}"></td>
+						<td bo-text="row.resolution"></td>
+						<td bo-text="row.city_no | getCityName"></td>
+						<td class="tdClick" ng-click="showPrograms(row,$index)" bo-text="row.programCounts"></td>
 						<td>
-							<font ng-if="row.status == 2" class="txtGrey">离线</font>
-							<font ng-if="row.status == 1" class="txtGreen">在线</font>
-							<font ng-if="row.status == 3" class="txtRed">异常</font>
-						</td>
-						<td>{{row.resolution}}</td>
-						<td>{{row.city_no | getCityName}}</td>
-						<td class="tdClick" ng-click="showPrograms(row,$index)">
-							{{row.programCounts}}
-						</td>
-						<td>
-							<button ng-if="perms(213)" class="btn tableBtn" ng-click="save(row)">编辑
+							<button bo-if="perms(213)" class="btn tableBtn" ng-click="save(row)">编辑
 							</button>
-							<button ng-if="row.status == 3 && perms(217)" class="btn tableBtn" ng-click="dealAbnormal(row)">处理异常
+							<button bo-if="row.status == 3 && perms(217)" class="btn tableBtn" ng-click="dealAbnormal(row)">处理异常
 							</button>
 						</td>
 					</tr>

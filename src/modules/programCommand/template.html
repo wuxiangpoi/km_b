@@ -43,27 +43,23 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-							<td class="tdClick ellipsisTd" ng-click="showProgramOrSchedule(row)">{{row.programName}}</td>
-							<td>{{row.terNo}}</td>
-							<td>{{row.terName}}</td>
-							<td title="{{row.userAccount}}">{{row.userAccount}}</td>
+					<tr ng-repeat="row in displayed" bindonce>
+							<td class="tdClick ellipsisTd" ng-click="showProgramOrSchedule(row)" bo-text="row.programName"></td>
+							<td bo-text="row.terNo"></td>
+							<td bo-text="row.terName"></td>
+							<td bo-title="row.userAccount" bo-text="row.userAccount"></td>
+							<td bo-text="row.cmdCode | cmdCodeTxt"></td>
 							<td>
-								{{row.cmdCode | cmdCodeTxt}}
-							</td>
-							<td>
-								<div class="txtGreen" ng-if="row.status == 1">下发成功</div>
-								<div ng-if="row.status == 2">
+								<div class="txtGreen" bo-if="row.status == 1">下发成功</div>
+								<div bo-if="row.status == 2">
 									<div class="txtRed">下发失败</div>
-									<div ng-if="row.errorMessage && row.errorMessage != null" class="tdTipTxt" title="{{'原因是：' + row.errorMessage}}">{{'原因是：' + row.errorMessage}}</div>
+									<div bo-if="row.errorMessage && row.errorMessage != null" class="tdTipTxt" title="{{'原因是：' + row.errorMessage}}">{{'原因是：' + row.errorMessage}}</div>
 								</div>
-								<div ng-if="row.status == 3">等待终端执行</div>
-								<div class="txtGrey" ng-if="row.status == 4">已取消</div>
-								<div ng-if="row.status == 5">正在下载</div>
+								<div bo-if="row.status == 3">等待终端执行</div>
+								<div class="txtGrey" bo-if="row.status == 4">已取消</div>
+								<div bo-if="row.status == 5">正在下载</div>
 							</td>
-							<td class="createTimeTd">
-								{{row.sendTime | formateTime}}
-							</td>
+							<td class="createTimeTd"  bo-text="row.sendTime | formateTime"></td>
 					</tr>
 				</tbody>
 				<tbody me-include="/static/tpl/table.html"></tbody>

@@ -17,13 +17,13 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-						<td>{{row.name}}</td>
-						<td>{{row.remark}}</td>
+					<tr ng-repeat="row in displayed" bindonce>
+						<td bo-text="row.name"></td>
+						<td bo-text="row.remark"></td>
 						<td>
 							<button class="btn tableBtn" ng-click="checkPerms(row)">查看权限</button>
-							<button ng-if="row.id != 0 && row.id != 1" class="btn tableBtn" ng-click="save(row)">编辑</button>
-							<button ng-if="row.id != 0 && row.id != 1" class="btn tableBtn" ng-click="del(row)">删除</button>
+							<button bo-if="row.id != 0 && row.id != 1" class="btn tableBtn" ng-click="save(row)">编辑</button>
+							<button bo-if="row.id != 0 && row.id != 1" class="btn tableBtn" ng-click="del(row)">删除</button>
 						</td>
 					</tr>
 				</tbody>

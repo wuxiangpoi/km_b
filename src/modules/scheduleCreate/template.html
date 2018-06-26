@@ -49,13 +49,9 @@
 								</tr>
 							</thead>
 							<tbody class="content" ng-show="!isLoading">
-								<tr ng-repeat="row in displayed">
-									<td class="tdClick ellipsisTd" title="{{row.name}}" ng-click="showProgram(row)">
-										{{row.name}}
-									</td>
-									<td>
-										{{row.duration + 's'}}
-									</td>
+								<tr ng-repeat="row in displayed" bindonce>
+									<td class="tdClick ellipsisTd" bo-title="row.name" bo-text="row.name" ng-click="showProgram(row)"></td>
+									<td bo-text="row.duration + 's'"></td>
 									<td>
 										<button class="btn tableBtn" ng-class="{'disabled': playListId.length > 100 || playListId.indexOf(row.id) != -1 }" ng-click="add(row)">添加
 										</button>

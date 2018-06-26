@@ -38,20 +38,20 @@
 				</thead>
 
 				<tbody ng-show="!isLoading">
-					<tr ng-repeat="row in displayed">
-						<td ng-click="details(row)">{{row.terNo}}</td>
-						<td class="ellipsisTd">{{row.terName}}</td>
-						<td>{{row.userAccount}}</td>
-						<td>{{row.cmdCode}}</td>
+					<tr ng-repeat="row in displayed" bindonce>
+						<td ng-click="details(row)" bo-text="row.terNo"></td>
+						<td class="ellipsisTd" bo-text="row.terName"></td>
+						<td bo-text="row.userAccount"></td>
+						<td bo-text="row.cmdCode"></td>
 						<td>{{getRootDicName('terminal_cmd', row.cmdCode)}}</td>
 						<td>
-							<div class="txtGreen" ng-if="row.status == 1">下发成功</div>
-							<div class="txtRed" ng-if="row.status == 2">下发失败</div>
-							<div class="txtGrey" ng-if="row.status == 0">正在下发</div>
-							<div class="txtGrey" ng-if="row.status == 5">正在下载</div>
-							<div class="txtGrey" ng-if="row.status == 4">已取消</div>
+							<div class="txtGreen" bo-if="row.status == 1">下发成功</div>
+							<div class="txtRed" bo-if="row.status == 2">下发失败</div>
+							<div class="txtGrey" bo-if="row.status == 0">正在下发</div>
+							<div class="txtGrey" bo-if="row.status == 5">正在下载</div>
+							<div class="txtGrey" bo-if="row.status == 4">已取消</div>
 						</td>
-						<td>{{row.sendTime | formateTime}}</td>
+						<td bo-text="row.sendTime | formateTime"></td>
 					</tr>
 				</tbody>
 				<tbody me-include="/static/tpl/table.html"></tbody>
