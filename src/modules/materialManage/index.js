@@ -164,10 +164,12 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
             if (vm.uploader.queue.length) {
                 var filenameArray = [];
                 for (var i = 0; i < vm.uploader.queue.length; i++) {
-                    vm.uploader.queue[i].file.desc = baseService.trim(vm.uploader.queue[i].file.desc,'g');
+                    vm.uploader.queue[i].oid = vm.currentGroup.id;
+                    vm.uploader.queue[i].gid = vm.currentLeaf.id;
+                    vm.uploader.queue[i].file.desc = baseService.trim(vm.uploader.queue[i].file.desc, 'g');
                     filenameArray.push(vm.uploader.queue[i].file.desc);
                 }
-                baseService.saveForm(vm,baseService.api.material + 'addMaterial_checkUpload', {
+                baseService.saveForm(vm, baseService.api.material + 'addMaterial_checkUpload', {
                     filenameArray: JSON.stringify(filenameArray)
                 }, function (res) {
                     if (res) {
@@ -240,7 +242,7 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                             }
                         }
                     } else {
-                        modalService.confirmAlert('提示', '上传的文件格式平台暂时不支持，目前支持的图片格式是:' + imgfile_type + '，目前支持的视频格式是:' + videofile_type+ '，目前支持的音频格式是:mp3', 'warning');
+                        modalService.confirmAlert('提示', '上传的文件格式平台暂时不支持，目前支持的图片格式是:' + imgfile_type + '，目前支持的视频格式是:' + videofile_type + '，目前支持的音频格式是:mp3', 'warning');
                         return false;
                     }
                 }
@@ -258,7 +260,7 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                         fileItem.isSuccess = false;
                         fileItem.isError = true;
                         fileItem.errorMsg = response.message;
-                    }else{
+                    } else {
                         $scope.initPage();
                     }
 
@@ -274,7 +276,7 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
             if (vm.modalForm.$valid) {
                 baseService.saveForm(vm, baseService.api.material + 'saveMaterial', {
                     id: item.id,
-                    name: baseService.trim(vm.data.name,'g')
+                    name: baseService.trim(vm.data.name, 'g')
                 }, function (res) {
                     if (res) {
                         vm.closeThisDialog();
