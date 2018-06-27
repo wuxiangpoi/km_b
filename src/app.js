@@ -1,4 +1,5 @@
 import angular from 'angular';
+import "babel-polyfill" //兼容IEpromise
 
 //引入全局样式
 import './app.depend.less'
