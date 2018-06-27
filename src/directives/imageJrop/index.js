@@ -33,6 +33,23 @@ export default app => {
                 });
                 $scope.isJcrop = true;
             }
+            $scope.uploader.filters.push({
+				name: 'customFilter',
+				fn: function (item /*{File|FileLikeObject}*/ , options) {
+					var ctype = item.name.substr(item.name.lastIndexOf('.') + 1);
+					var type = ',' + ctype + ',';
+					var file_type = 'jpg,png,jpeg,bmp';
+					if ((',' + file_type + ',').indexOf(type) != -1) {
+						return true;
+					} else {
+						modalService.alert('上传的文件格式平台暂时不支持' + ctype + '，目前支持的格式是:' + file_type, 'warning');
+
+						return false;
+
+					}
+
+				}
+			});
             $scope.uploader.onAfterAddingFile = function (fileItem) {
                 if($scope.upload){
                     baseService.postData(baseService.api.material + 'addMaterial_getOssSignature', {
