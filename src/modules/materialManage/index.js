@@ -221,6 +221,7 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                     var imgfile_type = vm.imgfile_type = $rootScope.getRootDicNameStrs('image_format');
                     var videofile_type = vm.videofile_type = $rootScope.getRootDicNameStrs('video_format');
                     var audiofile_type = ',mp3,';
+                    var programfile_type = ',zip,';
                     if ((',' + imgfile_type.toLowerCase() + ',').indexOf(type) != -1 || (',' + videofile_type.toLowerCase() + ',').indexOf(type) != -1 || (',' + audiofile_type.toLowerCase() + ',').indexOf(type) != -1) {
                         if ((',' + imgfile_type.toLowerCase() + ',').indexOf(type) != -1) {
                             if (item.size > 10 * 1024 * 1024) {
@@ -234,9 +235,15 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                             } else {
                                 return true;
                             }
-                        } else {
+                        } else if ((',' + videofile_type.toLowerCase() + ',').indexOf(type) != -1){
                             if (item.size > 500 * 1024 * 1024) {
                                 modalService.alert('不得上传大于500Mb的视频', 'warning');
+                            } else {
+                                return true;
+                            }
+                        }else if ((',' + programfile_type.toLowerCase() + ',').indexOf(type) != -1){
+                            if (item.size > 500 * 1024 * 1024) {
+                                modalService.alert('不得上传大于500Mb的互动包', 'warning');
                             } else {
                                 return true;
                             }

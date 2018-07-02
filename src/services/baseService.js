@@ -89,7 +89,7 @@ const baseService = (httpService, modalService, $rootScope, $state, programServi
                         modalService.alert(data.message, 'warning');
                     }
                 })
-                .then((err) => {
+                .catch((err) => {
                     if (err) {
                         modalService.alert('网络或服务端异常', 'warning')
                     }
@@ -115,7 +115,7 @@ const baseService = (httpService, modalService, $rootScope, $state, programServi
                         return false;
                     }
                 })
-                .then((err) => {
+                .catch((err) => {
                     if (err) {
                         modalService.alert('网络或服务端异常', 'warning')
                         if(cb){
