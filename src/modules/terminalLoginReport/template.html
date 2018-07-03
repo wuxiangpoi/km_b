@@ -32,6 +32,7 @@
 						<div class="panel-right">
 							<div class="panelSelectWrap">
 								<km-select options="terminalRootCitys" selected="sp.city_no" val="val" name="name" change="initPage"></km-select>
+								<km-select options="licenseOptions" selected="sp.hasLicense" val="val" name="name" change="initPage"></km-select>
 								<div class="dateTimeSelectWrap">
 									<input id="dateSel" type="text" class="form-control" data-date-type="string" data-date-format="yyyy-MM" data-model-date-format="yyyy-MM"
 									    ng-model="dateSel" placeholder="起始日期" data-autoclose="1" data-start-view="1" data-min-view="1" bs-datepicker>
@@ -50,6 +51,7 @@
 						<th>注册时间</th>
 						<th>终端编号</th>
 						<th>终端名称</th>
+						<th>授权编号</th>
 						<th>所属城市</th>
 					</tr>
 				</thead>
@@ -59,6 +61,7 @@
 						<td bo-title="row.account" bo-text="row.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
 						<td bo-text="row.no"></td>
 						<td bo-text="row.name"></td>
+						<td bo-text="row.licenseNo?row.licenseNo:'-'"></td>
 						<td bo-text="row.city_no | getCityName"></td>
 					</tr>
 				</tbody>

@@ -10,6 +10,7 @@ import {
 
 const terminalManageController = ($scope, $rootScope, $stateParams,$filter, baseService, modalService, leafService, chartService) => {
 	$scope.displayed = [];
+	$scope.displayedEnabled = [];
 	$scope.opOptions = opOptions;
 	$scope.terminalResolutionOptions = $filter('terminalResolutionOptions')();
 	$scope.terminalRootCitys = $filter('terminalRootCitys')();
@@ -39,11 +40,18 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 		if (baseService.isRealNum(page)) {
 			$scope.tableState.pagination.start = page * $scope.sp.length;
 		}
-		baseService.initTable($scope, tableState, baseService.api.terminal + 'getTerminalPageList');
+		baseService.initTable($scope, tableState, baseService.api.terminal + 'getTerminalPageList',(res) => {
+			for(var i = 0; i < res.data.length; i++){
+				if(res.data[i].status != 4){
+					$scope.displayedEnabled.push(res.data[i]);
+				}
+			}
+		});
 	}
 	$scope.initPage = function () {
 		$scope.ids = [];
 		$scope.idsNormal = [];
+		$scope.displayedEnabled = [];
 		$scope.callServer($scope.tableState, 0)
 	}
 	$scope.$on('emitGroupLeaf', function (e, group) {
@@ -58,9 +66,13 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 	$scope.checkAll = function ($event) {
 		$scope.ids = [];
 		$scope.idsNormal = [];
+		$scope.displayedEnabled = [];
 		if ($($event.currentTarget).is(':checked')) {
 			for (var i = 0; i < $scope.displayed.length; i++) {
 				$scope.ids.push($scope.displayed[i].id)
+				if ($scope.displayed[i].status != 4) {
+					$scope.ids.push($scope.displayed[i].id)
+				}
 				if ($scope.displayed[i].status == 1) {
 					$scope.idsNormal.push($scope.displayed[i].id)
 				}
@@ -68,11 +80,14 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 		} else {
 			$scope.ids = [];
 			$scope.idsNormal = [];
+			$scope.displayedEnabled = [];
 		}
 	}
 	$scope.checkThis = function (item, $event) {
 		if ($($event.currentTarget).is(':checked')) {
-			$scope.ids.push(item.id);
+			if(item.status != 4){
+				$scope.ids.push(item.id);
+			}
 			if (item.status == 1) {
 				$scope.idsNormal.push(item.id);
 			}

@@ -1,4 +1,7 @@
 import './style.less';
+import {
+	licenseOptions
+} from '../../filter/options';
 
 const terminalLoginReportController = ($scope, $rootScope, baseService, $filter, modalService) => {
 	$scope.displayed = [];
@@ -16,7 +19,7 @@ const terminalLoginReportController = ($scope, $rootScope, baseService, $filter,
 	$scope.sp.gid = '';
 	$scope.dateSel = $scope.sp.year + '-' + $scope.sp.month;
 	$scope.tableState = {};
-
+	$scope.licenseOptions = licenseOptions;
 	$scope.callServer = function (tableState, page) {
 		if (baseService.isRealNum(page)) {
 			$scope.tableState.pagination.start = page * $scope.sp.length;

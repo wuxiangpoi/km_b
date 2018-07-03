@@ -24,6 +24,19 @@ export let tempResolution = [{
     val: '768*1024',
     name: '768*1024'
 }]
+export let licenseOptions = [{
+    val: '',
+    name: '注册类型'
+},
+{
+    val: 1,
+    name: '有授权'
+},
+{
+    val: 0,
+    name: '无授权'
+}
+]
 export let hasTerminalOptions = [{
     val: '',
     name: '发布状态'

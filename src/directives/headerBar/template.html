@@ -59,9 +59,9 @@
                         <a href="" ng-click="updatePwd()">
                             <i class="fa fa-user fa-fw"></i> 修改密码</a>
                     </li>
-                    <li>
+                    <li ng-if="perms(3)">
                         <a href="" ng-click="updateLogo()">
-                            <i class="fa fa-user fa-fw"></i> 修改Logo</a>
+                            <i class="fa fa-picture-o"></i> 修改Logo</a>
                     </li>
                     <li>
                         <a href="" ng-click="logout()">
