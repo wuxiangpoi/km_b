@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -19,6 +20,7 @@ module.exports = {
             './bower_components/angular-strap/dist/angular-strap.min.js',
             './bower_components/angular-strap/dist/angular-strap.tpl.min.js',
             './bower_components/ng-dialog/js/ngDialog.js',
+            './bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
             './bower_components/angular-file-upload/dist/angular-file-upload.min.js',
             './bower_components/angular-messages/angular-messages.min.js',
             './src/libs/angular-slider/angular-slider.min.js',
@@ -66,7 +68,7 @@ module.exports = {
                         options: {
                             minimize: true
                         }
-                    },{
+                    }, {
                         loader: 'less-loader'
                     }]
                 })
@@ -93,6 +95,14 @@ module.exports = {
                 NODE_TEMP: +(new Date())
             }
         }),
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require('../static/dll/vendor-manifest.json')
+        }),
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require('../static/dll/angularVendor-manifest.json')
+        }),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
@@ -100,12 +110,21 @@ module.exports = {
             'window.$': 'jquery'
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor','manifest'],
+            name: ['vendor', 'manifest'],
             minChunks: Infinity,
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../src/index.html'),
             favicon: path.resolve(__dirname, '../src/favicon.ico')
+        }),
+        new HtmlWebpackIncludeAssetsPlugin({
+            assets: [
+                '../static/js/chart/echarts.min.js',
+                '../static/dll/vendor.18a899aabb15e95cffe6.dll.js',
+                '../static/dll/angularVendor.18a899aabb15e95cffe6.dll.js'
+            ],
+            append: false,
+            hash: false
         }),
         new ExtractTextPlugin({
             filename: 'styles.[chunkhash].css',

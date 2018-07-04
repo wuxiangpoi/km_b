@@ -16,6 +16,7 @@ let loadBasicModules = () => {
         'ui.sortable',
         'mgcrea.ngStrap',
         'ngDialog',
+        'toastr',
         'angularFileUpload',
         'ngMessages',
         'smart-table',
@@ -154,6 +155,13 @@ app.run(['$rootScope', '$state', 'baseService', 'ngDialog', ($rootScope, $state,
     .config(['ngDialogProvider', function (ngDialogProvider) {
         ngDialogProvider.setDefaults({
             closeByDocument: true
+        });
+    }])
+    .config(['toastrConfig', function (toastrConfig) {
+        angular.extend(toastrConfig, {
+            positionClass: 'toast-top-center',
+            extendedTimeOut: 1000,
+            timeOut: 2000,
         });
     }])
     .run(['fileUploaderOptions', function (fileUploaderOptions) {
