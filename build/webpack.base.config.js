@@ -120,8 +120,8 @@ module.exports = {
         new HtmlWebpackIncludeAssetsPlugin({
             assets: [
                 '../static/js/chart/echarts.min.js',
-                '../static/dll/vendor.18a899aabb15e95cffe6.dll.js',
-                '../static/dll/angularVendor.18a899aabb15e95cffe6.dll.js'
+                '../static/dll/vendor.730fac74de1e62a793a2.dll.js',
+                '../static/dll/angularVendor.730fac74de1e62a793a2.dll.js'
             ],
             append: false,
             hash: false
