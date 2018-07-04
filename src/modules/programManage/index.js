@@ -2,7 +2,8 @@ import style from './style.less';
 
 import {
 	hasTerminalOptions,
-	terminalStatusOptions
+	terminalStatusOptions,
+	programTypeOptions
 } from '../../filter/options';
 
 
@@ -35,6 +36,7 @@ const programController = ($scope, $rootScope, $filter, $state, baseService, mod
 	$scope.rootProgramReslotions = $filter('rootProgramReslotions')();
 	$scope.rootCheckStatusProgram = $filter('rootCheckStatusProgram')();
 	$scope.hasTerminalOptions = hasTerminalOptions;
+	$scope.programTypeOptions = programTypeOptions;
 	$scope.checkAll = function ($event) {
 		$scope.ids = [];
 		if ($($event.currentTarget).is(':checked')) {

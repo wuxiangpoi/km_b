@@ -1,9 +1,22 @@
 <div class="page-wrap animated fadeInRight" style="min-width: 710px;">
 	<div class="level2 clearfix" bindonce>
-		<button bo-if="perms(432)" type="button" ui-sref="dashboard.programAdd" class="btn btn-primary">
-			<i class="iconfont icon-tianjia-"></i>
-			制作节目
-		</button>
+		<div class="dropdown-toolTip-wrap" bo-if="perms(432)">
+			<button bs-dropdown type="button" class="btn btn-primary">
+				<i class="iconfont icon-tianjia-"></i>
+				制作节目
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li>
+					<a href="javascript:void(0)" ng-click="goTostate('dashboard.programAdd',{type:0},432)">
+						<i class="iconfont icon-jiemuguanli"></i>普通节目</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" ng-click="goTostate('dashboard.programAdd',{type:1},432)">
+						<i class="iconfont icon-jiemuguanli"></i>互动节目</a>
+				</li>
+			</ul>
+		</div>
+
 		<button bo-if="perms(439)" type="button" ng-click="ids.length != 0?setGroup():''" ng-class="{'disabled-sham': ids.length == 0}"
 		    data-trigger="hover" bs-enabled="ids.length == 0" data-placement="bottom" data-type="success" data-title="{{'请先选择节目'}}"
 		    bs-tooltip class="btn btn-primary warning">
@@ -52,6 +65,7 @@
 								<km-select options="rootProgramReslotions" selected="sp.resolution" val="val" name="name" change="initPage"></km-select>
 								<km-select options="hasTerminalOptions" selected="sp.hasTerminal" val="val" name="name" change="initPage"></km-select>
 								<km-select options="rootCheckStatusProgram" selected="sp.status" val="val" name="name" change="initPage"></km-select>
+								<km-select options="programTypeOptions" selected="sp.type" val="val" name="name" change="initPage"></km-select>
 							</div>
 						</div>
 					</div>

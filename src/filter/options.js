@@ -24,6 +24,19 @@ export let tempResolution = [{
     val: '768*1024',
     name: '768*1024'
 }]
+export let programTypeOptions = [{
+    val: '',
+    name: '节目类型'
+},
+{
+    val: 0,
+    name: '普通节目'
+},
+{
+    val: 1,
+    name: '互动节目'
+}
+]
 export let licenseOptions = [{
     val: '',
     name: '注册类型'
@@ -78,6 +91,10 @@ export let terminalStatusOptions = [{
     {
         val: 3,
         name: '异常'
+    },
+    {
+        val: 4,
+        name: '到期'
     }
 ]
 export let opOptions = [{
