@@ -1,7 +1,7 @@
 import template from './template.html';
 import './style.less';
 
-let controller = ($scope,$rootScope, baseService, modalService) => {
+let controller = ($scope, $rootScope, baseService, modalService) => {
     let postData = {
         password: '',
         newPassword: '',
@@ -52,11 +52,24 @@ let controller = ($scope,$rootScope, baseService, modalService) => {
             }
         })
     }
-    $scope.updateLogo = function(){
+    $scope.updateLogo = function () {
         modalService.confirmDialog(540, '修改Logo', {
             info: '(支持jpg,png,jpeg,bmp格式的图片，不超过5M)'
-        }, 'static/tpl/update_logo.html', function (vm, ngDialog) {
-            vm.$broadcast('uploadImg',() => {});
+        }, 'static/tpl/update_logo.html', (vm, ngDialog) => {
+            vm.isPosting = true;
+            vm.$broadcast('uploadImg', vm);
+        }, (vm) => {
+            vm.$on('uploadImgComplete', function (e, response) {
+                vm.isPosting = false;
+                if (response.code != 1) {
+                    modalService.alert(response.message, 'warning');
+                } else {
+                    vm.closeThisDialog();
+                    modalService.alert('修改成功', 'success');
+                    $rootScope.userData.root_logo = response.content;
+                }
+
+            });
         })
     }
     $scope.logout = function () {
@@ -76,7 +89,7 @@ let controller = ($scope,$rootScope, baseService, modalService) => {
         $('body').toggleClass('mini-navbar');
     }
 }
-controller.$inject = ['$scope', '$rootScope','baseService', 'modalService'];
+controller.$inject = ['$scope', '$rootScope', 'baseService', 'modalService'];
 
 export default app => {
     app.directive('headerBar', () => {

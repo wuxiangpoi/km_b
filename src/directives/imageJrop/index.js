@@ -96,11 +96,15 @@ export default app => {
                 }
                 
             };
+            $scope.uploader.onCompleteItem = function (fileItem, response, status, headers) {
+                $scope.$emit('uploadImgComplete',response);
+            };
             $scope.$on('uploadImg',(e,data) => {
                 let cas = $('#jcropImg').cropper('getCroppedCanvas');
                 let base64url = cas.toDataURL('image/jpeg');
                 cas.toBlob(function (blob) {
                     $scope.upload = true;
+                    blob.name = 'newLog.jpeg';
                     $scope.uploader.addToQueue(blob);
                 })
             });
