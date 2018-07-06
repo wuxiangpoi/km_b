@@ -8,7 +8,7 @@ import {
 } from '../../filter/options';
 
 
-const terminalManageController = ($scope, $rootScope, $stateParams,$filter, baseService, modalService, leafService, chartService) => {
+const terminalManageController = ($scope, $rootScope, $stateParams, $filter, baseService, modalService, leafService, chartService) => {
 	$scope.displayed = [];
 	$scope.displayedEnabled = [];
 	$scope.opOptions = opOptions;
@@ -40,9 +40,9 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 		if (baseService.isRealNum(page)) {
 			$scope.tableState.pagination.start = page * $scope.sp.length;
 		}
-		baseService.initTable($scope, tableState, baseService.api.terminal + 'getTerminalPageList',(res) => {
-			for(var i = 0; i < res.data.length; i++){
-				if(res.data[i].status != 4){
+		baseService.initTable($scope, tableState, baseService.api.terminal + 'getTerminalPageList', (res) => {
+			for (var i = 0; i < res.data.length; i++) {
+				if (res.data[i].status != 4) {
 					$scope.displayedEnabled.push(res.data[i]);
 				}
 			}
@@ -52,7 +52,7 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 		$scope.ids = [];
 		$scope.idsNormal = [];
 		$scope.displayedEnabled = [];
-		$scope.callServer($scope.tableState, 0)
+		$scope.callServer($scope.tableState, 0);
 	}
 	$scope.$on('emitGroupLeaf', function (e, group) {
 		if ($scope.sp.oid != group.id) {
@@ -66,26 +66,21 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 	$scope.checkAll = function ($event) {
 		$scope.ids = [];
 		$scope.idsNormal = [];
-		$scope.displayedEnabled = [];
 		if ($($event.currentTarget).is(':checked')) {
-			for (var i = 0; i < $scope.displayed.length; i++) {
-				$scope.ids.push($scope.displayed[i].id)
-				if ($scope.displayed[i].status != 4) {
-					$scope.ids.push($scope.displayed[i].id)
-				}
-				if ($scope.displayed[i].status == 1) {
-					$scope.idsNormal.push($scope.displayed[i].id)
+			for (var i = 0; i < $scope.displayedEnabled.length; i++) {
+				$scope.ids.push($scope.displayedEnabled[i].id);
+				if ($scope.displayedEnabled[i].status == 1) {
+					$scope.idsNormal.push($scope.displayedEnabled[i].id)
 				}
 			}
 		} else {
 			$scope.ids = [];
 			$scope.idsNormal = [];
-			$scope.displayedEnabled = [];
 		}
 	}
 	$scope.checkThis = function (item, $event) {
 		if ($($event.currentTarget).is(':checked')) {
-			if(item.status != 4){
+			if (item.status != 4) {
 				$scope.ids.push(item.id);
 			}
 			if (item.status == 1) {
@@ -224,7 +219,7 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 		modalService.confirmDialog(540, '编辑终端信息', modalData, '/static/tpl/terminal_save.html', (vm, ngDialog) => {
 			if (vm.modalForm.$valid) {
 				let formData = {
-					name: baseService.trim(vm.data.name,'g'),
+					name: baseService.trim(vm.data.name, 'g'),
 					id: vm.data.id,
 					city_no: vm.data.city_no,
 					remark: vm.data.remark ? vm.data.remark : '',
@@ -515,7 +510,7 @@ const terminalManageController = ($scope, $rootScope, $stateParams,$filter, base
 	}
 }
 
-terminalManageController.$inject = ['$scope', '$rootScope','$stateParams', '$filter', 'baseService', 'modalService', 'leafService', 'chartService'];
+terminalManageController.$inject = ['$scope', '$rootScope', '$stateParams', '$filter', 'baseService', 'modalService', 'leafService', 'chartService'];
 
 export default angular => {
 	return angular.module('terminalManageModule', []).controller('terminalManageController', terminalManageController);
