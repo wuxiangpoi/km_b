@@ -167,7 +167,13 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                     vm.uploader.queue[i].oid = vm.currentGroup.id;
                     vm.uploader.queue[i].gid = vm.currentLeaf.id;
                     vm.uploader.queue[i].file.desc = baseService.trim(vm.uploader.queue[i].file.desc, 'g');
-                    filenameArray.push(vm.uploader.queue[i].file.desc);
+                    if (baseService.trim(vm.uploader.queue[i].file.desc, 'g') == '') {
+                        var fileName = vm.uploader.queue[i].file.name.split('.');
+                        fileName.pop();
+                        filenameArray.push(fileName.join(''));
+                    } else {
+                        filenameArray.push(vm.uploader.queue[i].file.desc);
+                    }
                 }
                 baseService.saveForm(vm, baseService.api.material + 'addMaterial_checkUpload', {
                     filenameArray: JSON.stringify(filenameArray)
@@ -205,7 +211,19 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
             var uploader = vm.uploader = new FileUploader();
 
             // FILTERS
-
+            var createReader = function (file, next) {
+                var reader = new FileReader;
+                reader.onload = function (evt) {
+                    var image = new Image();
+                    image.onload = function () {
+                        var width = this.width;
+                        var height = this.height;
+                        next(width, height);
+                    };
+                    image.src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
             vm.uploader.filters.push({
                 name: 'customFilter',
                 fn: function fn(item /*{File|FileLikeObject}*/ , options) {
@@ -235,13 +253,13 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
                             } else {
                                 return true;
                             }
-                        } else if ((',' + videofile_type.toLowerCase() + ',').indexOf(type) != -1){
+                        } else if ((',' + videofile_type.toLowerCase() + ',').indexOf(type) != -1) {
                             if (item.size > 500 * 1024 * 1024) {
                                 modalService.alert('不得上传大于500Mb的视频', 'warning');
                             } else {
                                 return true;
                             }
-                        }else if ((',' + programfile_type.toLowerCase() + ',').indexOf(type) != -1){
+                        } else if ((',' + programfile_type.toLowerCase() + ',').indexOf(type) != -1) {
                             if (item.size > 500 * 1024 * 1024) {
                                 modalService.alert('不得上传大于500Mb的互动包', 'warning');
                             } else {
@@ -256,6 +274,16 @@ const materialManageController = ($rootScope, $scope, $filter, baseService, moda
             });
 
             vm.uploader.onAfterAddingFile = function (fileItem) {
+                var imgfile_type = vm.imgfile_type = $rootScope.getRootDicNameStrs('image_format');
+                if (imgfile_type.toLowerCase().indexOf(fileItem._file.type.split('/')[1]) != -1) {
+                    createReader(fileItem._file, function (w, h) {
+                        if (w > 4096 || h > 4096) {
+                            vm.uploader.removeFromQueue(fileItem)
+                            baseService.alert('图片尺寸不能超过4096*4096', 'warning', true);
+                        }
+                    })
+                }
+
                 var fileName = fileItem.file.name.split('.');
                 fileName.pop();
                 fileItem.file.desc = fileName.join(',');
