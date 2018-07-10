@@ -1,5 +1,6 @@
 import login from './modules/login/route.js'
 import help from './modules/help/route.js'
+import register from './modules/register/route.js'
 import passwordFind from './modules/passwordFind/route.js'
 import errPage from './modules/errPage/route.js'
 import dashboard from './modules/dashboard/route.js'
@@ -32,6 +33,7 @@ import templateRouter from './modules/template/templateRouter';
 const states = [
     dashboard,
     help,
+    register,
     passwordFind,
     login,
     errPage,

@@ -1,0 +1,96 @@
+<div class="login_main_others animated fadeInRight" style="padding-top:90px;">
+	<div me-include="/static/tpl/nav_noLogin.html"></div>
+	<div class="row-fluid">
+		<div class="title clearfix" style="margin-bottom: 20px;">
+			<h4 class="fl" style="font-weight:bold;margin:0;">账号申请</h4>
+		</div>
+		<div class="psd-find-content">
+			<div class="find-form">
+				<div class="row" ng-show="step == 1">
+					<form id="registerForm" name="modalForm" novalidate>
+						<div class="form-group clearfix">
+							<label class="col-sm-3 control-label">企业名称：</label>
+							<div class="col-sm-9">
+								<input type="text" name="name" required class="form-control" ng-model="data.name" />
+								<div class="help-block" ng-messages="modalForm.name.$error" ng-if="isShowMessage">
+									<p ng-message="required">请输入企业名称</p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-sm-3 control-label">联系人：</label>
+							<div class="col-sm-9">
+								<input type="text" required class="form-control" name="contact" ng-model="data.contact" />
+								<div class="help-block" ng-messages="modalForm.contact.$error" ng-if="isShowMessage">
+									<p ng-message="required">请输入联系人姓名</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group clearfix">
+							<label class="col-sm-3 control-label">联系电话：</label>
+							<div class="col-sm-9">
+								<input type="text" required ng-pattern="/^1[0-9]\d{9}$/" class="form-control" name="phone" ng-model="data.phone" />
+								<div class="help-block" ng-messages="modalForm.phone.$error" ng-if="isShowMessage">
+									<p ng-message="pattern">请输入正确手机号</p>
+									<p ng-message="required">请输入联系电话</p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-sm-3 control-label">关联邮箱：</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" required ng-pattern="/^[a-zA-Z0-9_-]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/"
+								    name="email" ng-model="data.email" />
+								<div class="help-block" ng-messages="modalForm.email.$error" ng-if="isShowMessage">
+									<p ng-message="pattern">请输入正确邮箱</p>
+									<p ng-message="required">请输入邮箱</p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group clearfix">
+								<label class="col-sm-3 control-label">营业执照：</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" required ng-pattern="/^[a-zA-Z0-9_-]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/"
+										name="email" ng-model="data.email" />
+									<div class="help-block" ng-messages="modalForm.email.$error" ng-if="isShowMessage">
+										<p ng-message="required">请上传营业执照</p>
+									</div>
+								</div>
+							</div>
+						<div class="form-group clearfix">
+							<label class="col-sm-3 control-label"></label>
+							<div class="col-sm-9">
+								<input type="checkbox" name="agree" class="" required/>
+								<span ng-click="showAgreeMent()">同意《快媒平台使用协议》</span>
+								<div class="help-block" ng-messages="modalForm.email.$error" ng-if="isShowMessage">
+									<p ng-message="required">请同意《快媒平台使用协议》</p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-sm-3 control-label"></label>
+							<div class="col-sm-9">
+								<button class="btn btn-primary" style="width: 100%;" ng-class="{'disabled': isPosting}" type="button" ng-click="submit()">提交
+									<i class="fa fa-spinner"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+
+				</div>
+				<div class="row" ng-if="step == 2">
+					<div class='sueecss-info'>
+						<i class="fa fa-check-circle"></i>
+						<p>提交成功！</p>
+						<p>
+							我们将尽快与您联系~
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>
