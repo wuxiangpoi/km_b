@@ -12,7 +12,7 @@ module.exports = merge(baseConf, {
         open: true,
         proxy: {
             '/api': {
-                target: 'http://47.92.116.16:9090',
+                target: 'http://e-media.vip:9090',
                 secure: false
             }
         }
