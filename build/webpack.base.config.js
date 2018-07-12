@@ -24,7 +24,6 @@ module.exports = {
             './bower_components/angular-file-upload/dist/angular-file-upload.min.js',
             './bower_components/angular-messages/angular-messages.min.js',
             './src/libs/angular-slider/angular-slider.min.js',
-            './src/libs/jquery.media.js',
             './src/libs/smart-table/smart-table.js'
         ],
         'jqVenter': [
@@ -33,7 +32,8 @@ module.exports = {
             './bower_components/layer/dist/layer.js',
             './bower_components/jquery.cookie/jquery.cookie.js',
             './src/libs/bootstrap/dist/js/bootstrap.min.js',
-            './src/libs/cropper/cropper.min.js'
+            './src/libs/cropper/cropper.min.js',
+            './src/libs/jquery.media.js',
         ]
     },
     output: {
