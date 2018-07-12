@@ -9,6 +9,7 @@ module.exports = {
             'jquery',
             './bower_components/jquery-ui/jquery-ui.js',
             './bower_components/jquery.cookie/jquery.cookie.js',
+            './src/libs/jquery.media.js',
             './src/libs/cropper/cropper.min.js'
         ],
         angularVendor: [

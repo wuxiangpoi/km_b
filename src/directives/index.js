@@ -11,6 +11,7 @@ import groupSelect from './groupSelect'
 import imageView from './imageView'
 import imageJrop from './imageJrop'
 import kmAudio from './kmAudio'
+import kmPdf from './kmPdf'
 import imageThum from './imageThum'
 import eInstructions from './eInstructions'
 
@@ -33,6 +34,7 @@ const directives = [headerBar,
     imageView,
     imageJrop,
     kmAudio,
+    kmPdf,
     imageThum,
     eInstructions,
     dmbdPager,

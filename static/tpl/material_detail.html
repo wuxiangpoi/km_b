@@ -1,7 +1,7 @@
 <div class="modal-header" me-include="/static/tpl/modal_header.html"></div>
 
 <div class="modal-body clearfix">
-    <div class="col-sm-8 marb20" style="background:#f6f7fa;height:350px;">
+    <div class="col-sm-8 marb20 p0" style="background:#f6f7fa;height:350px;">
         <div ng-if="data.type==0" class="polr">
             <img src="/static/img/loading.gif" ng-if="data.width > data.height" style="width:100%;height:350px;display:block;" lazy-src="{{data.nUrl}}"
             />
@@ -14,7 +14,7 @@
         <video ng-if="data.type==1" width="100%" height="100%!important" controls>
             <source ng-src="{{data.path | play_url}}">
         </video>
-        <div km-audio ng-if="data.type==2" audiodata="{{data}}"></div>
+        <div km-audio ng-if="data.type==4" audiodata="{{data}}"></div>
         <div ng-if="data.type == 3" style="width:100%;height: 100%;padding-top: 15px;">
             <a href="{{data.path}}" style="color: #fff!important;" class="btn btn-primary">下载</a>
             <div style="text-align: center;margin-top: 100px;">
@@ -23,6 +23,7 @@
             </div>
 
         </div>
+        <div km-pdf ng-if="data.type==2" pdfdata="{{data}}"></div>
     </div>
     <div class="col-sm-4 modalDetail">
         <div class="row">
