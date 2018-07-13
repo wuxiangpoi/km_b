@@ -33,7 +33,8 @@
     "oclazyload": "ocLazyLoad#^1.1.0",
     "ng-dialog": "^1.4.0",
     "layer": "^3.1.1",
-    "angular-ui-sortable": "^0.19.0"
+    "angular-ui-sortable": "^0.19.0",
+    "angular-toastr": "^2.1.1"
   },
   "devDependencies": {
     "angular-slider": "^0.3.2"
