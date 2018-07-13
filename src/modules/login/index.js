@@ -7,7 +7,7 @@ const loginController = ($scope, $rootScope, baseService) => {
     $scope.password = '';
     $scope.isRemembered = true;
     $scope.isShowMessage = false;
-    if ($.cookie('user_cookie')) {
+    if ($.cookie('user_cookie') && $.cookie('user_cookie') != 'null') {
         let cookie =  $.cookie('user_cookie').toString().indexOf('account') != -1?$.cookie('user_cookie').toString():CryptoJS.AES.decrypt($.cookie('user_cookie').toString(),config.secret).toString(CryptoJS.enc.Utf8);
         let cookiesData = JSON.parse(cookie);
         $scope.domain = cookiesData.domain;
